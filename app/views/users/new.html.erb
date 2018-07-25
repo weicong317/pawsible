@@ -2,6 +2,14 @@
   <h2><%= t(".title") %></h2>
 
   <%= form_for @user do |form| %>
+   
+<!-- HUMAN DETAILS -->
+    
+    <div class="text-field">
+      <%= form.label :owner_name %>
+      <%= form.text_field :email, type: 'email' %>
+    </div>
+
     <div class="text-field">
       <%= form.label :email %>
       <%= form.text_field :email, type: 'email' %>
@@ -11,6 +19,8 @@
       <%= form.label :password %>
       <%= form.password_field :password %>
     </div>
+
+<!-- HUMAN DETAILS -->
 
     <div class="submit-field">
       <%= form.submit %>

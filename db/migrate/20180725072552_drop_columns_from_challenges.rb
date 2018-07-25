@@ -1,4 +1,4 @@
-class ChangeNameNameColumn < ActiveRecord::Migration[5.2]
+class DropColumnsFromChallenges < ActiveRecord::Migration[5.2]
   def change
   	remove_column(:challenges, :difficulty)
   	remove_column(:challenges, :category)
