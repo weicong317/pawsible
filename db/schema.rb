@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_015056) do
+ActiveRecord::Schema.define(version: 2018_07_25_065745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,30 +20,16 @@ ActiveRecord::Schema.define(version: 2018_07_25_015056) do
     t.string "title"
     t.text "description"
     t.integer "difficulty"
-    t.integer "point"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "dog_name"
-    t.string "breed"
-    t.text "biography"
-    t.json "profile_pic"
-    t.integer "status"
-    t.integer "total_points"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_pets_on_user_id"
+    t.string "sponsor"
   end
 
   create_table "uploads", force: :cascade do |t|
     t.bigint "pet_id"
     t.bigint "challenge_id"
-    t.json "video"
-    t.boolean "verification"
-    t.integer "number_of_rating"
+    t.json "media"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_uploads_on_challenge_id"
@@ -57,7 +43,12 @@ ActiveRecord::Schema.define(version: 2018_07_25_015056) do
     t.string "encrypted_password", limit: 128, null: false
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
-    t.string "name"
+    t.string "owner_name"
+    t.string "dog_name"
+    t.string "breed"
+    t.json "profile_pic"
+    t.integer "status"
+    t.integer "total_points"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
