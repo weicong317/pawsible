@@ -2,6 +2,12 @@
   <h2><%= t(".title") %></h2>
 
   <%= form_for @user do |form| %>
+    
+    <div class="text-field">
+      <%= form.label :owner_name, :Name %>
+      <%= form.text_field :owner_name %>
+    </div>
+
     <div class="text-field">
       <%= form.label :email %>
       <%= form.text_field :email, type: 'email' %>
@@ -10,6 +16,21 @@
     <div class="password-field">
       <%= form.label :password %>
       <%= form.password_field :password %>
+    </div>
+
+    <div class="text-field">
+      <%= form.label :dog_name, :"Dog name" %>
+      <%= form.text_field :dog_name %>
+    </div>
+
+    <div class="text-field">
+      <%= form.label :breed %>
+      <%= form.text_field :breed %>
+    </div>
+
+    <div class="text-field">
+      <%= form.label :bio, :"Say something about the dog!" %>
+      <%= form.text_field :bio %>
     </div>
 
     <div class="submit-field">
