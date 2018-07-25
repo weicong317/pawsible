@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Clearance to build user interface
 gem "clearance"
+
+# Use carrierwave to upload files
+gem 'carrierwave'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

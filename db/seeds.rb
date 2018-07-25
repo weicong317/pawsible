@@ -18,8 +18,8 @@ ActiveRecord::Base.transaction do
     user['breed'] = Faker::Dog.breed 
     user['profile_pic'] = Faker::Avatar.image
     user['bio'] = Faker::Dog.meme_phrase
-    user['status'] = ["Underdog", "Good Dog", "Clever Dog", "Hot Dog", "Top Dog"].sample
-    user['points'] = rand(1..200)
+    user['status'] = rand(0..4)
+    user['total_points'] = rand(1..200)
 
     User.create(user)
   end
@@ -44,7 +44,7 @@ upload = {}
 
 ActiveRecord::Base.transaction do
   40.times do 
-    upload['pet_id'] = rand(1..10)  
+    upload['user_id'] = rand(1..10)  
     upload['challenge_id'] = rand(1..6)  
     upload['media'] = "https://player.vimeo.com/external/210743842.hd.mp4?s=816e9088f196a9a11f754769faa509ed5ba82378&profile_id=119&oauth2_token_id=57447761"
 

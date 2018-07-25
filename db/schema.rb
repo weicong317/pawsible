@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_072552) do
+ActiveRecord::Schema.define(version: 2018_07_25_075820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 2018_07_25_072552) do
   end
 
   create_table "uploads", force: :cascade do |t|
-    t.bigint "pet_id"
     t.bigint "challenge_id"
     t.json "media"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["challenge_id"], name: "index_uploads_on_challenge_id"
-    t.index ["pet_id"], name: "index_uploads_on_pet_id"
+    t.index ["user_id"], name: "index_uploads_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_072552) do
     t.json "profile_pic"
     t.integer "status"
     t.integer "total_points"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
