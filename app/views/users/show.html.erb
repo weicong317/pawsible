@@ -10,8 +10,11 @@
 <%= button_to ("Edit Profile ")%>
 
 <!--Above Will be: edit_user_path, method: :get -->
+<!-- Problem to solve: Two tyoes of media, video and image -->
 
     <% @user.uploads.each do |upload| %>
     <p><%= upload.challenge.title %> </p> 
     <p><%="Points Gained: #{upload.challenge.points}" %></p> 
+    <%= video_tag upload.media %> 
+
  <% end %>
