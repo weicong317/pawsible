@@ -8,5 +8,20 @@ class User < ApplicationRecord
   # validates :dog_name, presence: true
   # validates :bio, presence: true
 
-  enum status: [:"004-underdog.png", :"003-gooddog.png", :"002-cleverdog.png", :"001-hotdog.png", :"005-topdog.png"]
+  enum status: [:"underdog", :"gooddog", :"cleverdog", :"hotdog", :"topdog"]
+
+  def badge
+    case total_points
+    when 0..20
+      "004-underdog.png"
+    when 21..40
+      "003-gooddog.png"
+    when 41..60
+      "002-cleverdog.png"
+    when 61..80
+      "001-hotdog.png"
+    else
+      "005-topdog.png"
+    end
+  end
 end

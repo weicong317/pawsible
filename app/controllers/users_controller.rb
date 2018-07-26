@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def new 
-
   end
   
   def create
@@ -26,7 +25,6 @@ class UsersController < ApplicationController
   def update
     User.find(params[:id]).update(update_params)
     redirect_to user_path(params[:id])
-
   end
 
   private
