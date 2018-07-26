@@ -1,4 +1,4 @@
-<%= form_with scope: :profile, url: user_path(params[:id]), method: :put, local: true do |f| %>
+<%= form_with scope: :profile, url: user_path(@user.id), method: :put, local: true do |f| %>
   <%= f.label :dog_name, "Name" %>
   <%= f.text_field :dog_name, placeholder: @user.dog_name %>
   <br>
