@@ -1,0 +1,56 @@
+
+<div>
+	<h1>Some kind of header or intro?></h1>
+	<h4>Some kind of app info? Or maybe this is lower in the page after top dogs? idk...></h1>
+</div>
+
+
+<!-- #we need a carousel for the top dogs. The top three higest scoring dogs will be our top dogs!-->
+
+
+<div>
+    <% @topdogs do |dog| %>
+    <p><%= dog.dog_name%> </p> 
+    <p><%="Status: #{dog.status}" %></p>
+    <p><%="Ranking: ??? - how to pull this through?" %></p>  
+    <p><%="Owned By: #{dog.owner_name}" %></p> 
+    <%= video_tag upload.media %> 
+
+    <%= button_to ("View Profile")%>
+
+</div>
+
+
+
+<!-- #we need cards for the lastest (6?) dog posts. Build into the controller that only the latest 6 are pulled through! -->
+
+    <% @uploads do |upload| %>
+    <p><%= upload.challenge.title%> </p> 
+    <p><%="Completed By: #{upload.user.dog_name}"%> </p> 
+    <p><%="Status: #{upload.user.status}" %></p>
+    <p><%="Owned By: #{upload.user.owner_name}" %></p> 
+    
+    <%= video_tag upload.media %> 
+    
+ <% end %>
+ </div>
+
+
+
+<!-- #we need a leaderboard with the top (10? 8?) dogs. -->
+
+<div>
+  <ul>
+    <% @leaderboard do |dog| %>
+    <li><%= dog.dog_name%></li>
+    <li><%="Ranking: ??? - how to pull this through?" %></li> 
+    <li><%="Points: #{dog.total_points}" %></li> 
+    <li><%="Owned By: #{dog.owner_name}" %></li>
+    <li><%= video_tag dog.profile_pic %></li>
+
+    <li><%= button_to ("View Profile")%></li>
+   
+   <% end %>
+  
+  </ul>
+</div>

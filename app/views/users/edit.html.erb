@@ -1,0 +1,12 @@
+<%= form_with scope: :profile, url: user_path(params[:id]), method: :put, local: true do |f| %>
+  <%= f.label :dog_name, "Name" %>
+  <%= f.text_field :dog_name, placeholder: @user.dog_name %>
+  <br>
+  <%= f.label :owner_name %>
+  <%= f.text_field :owner_name, placeholder: @user.owner_name %>
+  <br>
+  <%= f.label :bio, "Biography" %>
+  <%= f.text_field :bio, placeholder: @user.bio %>
+  <br>
+  <%= f.submit "Update Profile" %>
+<% end %>
