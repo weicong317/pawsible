@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :uploads
 
+  mount_uploader :profile_pic, AvatarUploader
+
   # validates :email, format: { with: /\A\w+.?\w+@\w+.\w+\z/ }, uniqueness: true
   # validates :owner_name, presence: true
   # validates :breed, presence: true
