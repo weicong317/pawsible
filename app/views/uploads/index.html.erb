@@ -1,3 +1,17 @@
-<% @uploads.each do |video| %>
-  <video controls="controls" autobuffer="true" width="300" src="<%= video.media.url %>"></video>
-<% end %>
+<div>
+  Video:
+  <% @uploads.each do |video| %>
+    <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+      <video controls="controls" autobuffer="true" width="300" src="<%= video.media.url %>"></video>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  Picture:
+  <% @uploads.each do |picture| %>
+    <% if %w(jpg jpeg gif png).include?(picture.media.file.extension.downcase) %>
+      <%= image_tag picture.media.url.to_s %>
+    <% end %>
+  <% end %>
+</div>
