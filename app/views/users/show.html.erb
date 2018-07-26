@@ -1,0 +1,17 @@
+<div>
+	<h1><%= @user.dog_name %></h1>
+	<h2><%= "Status: #{@user.status}" %></h2>
+	<p><%= "Breed: #{@user.breed}" %></p>
+	<p><%= "Mum/Dad: #{@user.owner_name}" %></p>
+	<p><%= "Bio: #{@user.bio}" %></p>
+	<%= image_tag @user.profile_pic %>
+</div>
+
+<%= button_to ("Edit Profile ")%>
+
+<!--Above Will be: edit_user_path, method: :get -->
+
+    <% @user.uploads.each do |upload| %>
+    <p><%= upload.challenge.title %> </p> 
+    <p><%="Points Gained: #{upload.challenge.points}" %></p> 
+ <% end %>
