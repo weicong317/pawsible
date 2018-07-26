@@ -12,6 +12,8 @@
 	<p>Owner: <%= @upload.user.owner_name %></p>
 	<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
 	<li><%= image_tag @upload.user.profile_pic %></li>
+  <li><%= image_tag(@upload.user.badge) %></li>
+
 
 	<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
 </div>
