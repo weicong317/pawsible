@@ -10,7 +10,7 @@
     <% @top_user.each_with_index do |dog, index| %>
       <p><%= image_tag dog.profile_pic %></p>
       <p><%= dog.dog_name%></p> 
-      <p>Status: <%= dog.status %></p>
+      <p>Status: <%= image_tag(dog.status) %></p>
       <p>Ranking: <%= index + 1 %></p>  
       <p>Onwed By: <%= dog.owner_name %></p> 
 
@@ -24,7 +24,7 @@
       <video controls="controls" autobuffer="true" width="300" src="<%= upload.media.url %>"></video>
       <p><%= upload.challenge.title%> </p> 
       <p>Completed By: <%= upload.user.dog_name %></p> 
-      <p>Status: <%= upload.user.status %></p>
+      <p>Status: <%= image_tag(upload.user.status) %></p>
       <p>Owned By: <%= upload.user.owner_name %></p>
     <% end %>
  </div>
