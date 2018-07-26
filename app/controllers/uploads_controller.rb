@@ -16,9 +16,12 @@ class UploadsController < ApplicationController
   end
 
   def show
+    @upload = Upload.find(params[:id])
+    @same_kind = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order.limit(8)
   end
 
   def index
+    @uploads = Upload.all.reverse_order
   end
 
   private
