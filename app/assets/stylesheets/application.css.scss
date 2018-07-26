@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap";
 
 .profile-pic {
@@ -31,5 +32,19 @@
 
 .card-title {
 	margin: 0.75rem 0;
+}
+
+.jumbotron {
+	background-image: url('jumbotron.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+  	text-align: center;
+}
+
+@media (min-width: 576px){
+	.jumbotron {
+	    padding: 14rem 6rem;
+	}
 }
 
