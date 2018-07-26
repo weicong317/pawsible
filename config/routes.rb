@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :challenges, only: [:index]
   resources :users, only: [:create, :show, :edit, :update]
+  resources :uploads, only: [:index, :show]
+  resources :challenges, only: [:index] do
+    resources :uploads, only: [:new, :create]
+  end
 
   # from clearance
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

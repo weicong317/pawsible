@@ -1,7 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-lg-4">
+		<% if @user.profile_pic.nil? === false %>
 			<%= image_tag @user.profile_pic, class:"profile-pic mt-4 ml-4" %>
+		<% end %>
 		</div>
 		<div class="col-sm-12 col-lg-6">
 			<h2 class="my-4"><%= @user.dog_name %></h2>
@@ -13,7 +15,6 @@
 			<%= button_to "Edit Profile", edit_user_path(@user.id), method: :get, class:"btn btn-primary"%>
 		</div>
 	</div>
-
 
 	<div class="row my-4">
 	    <% @user.uploads.each do |upload| %>

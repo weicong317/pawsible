@@ -32,6 +32,12 @@ gem "clearance"
 # Use carrierwave to upload files
 gem 'carrierwave'
 
+# To upload to cloud
+gem "fog-aws"
+
+# To store sensitive info without upload to git
+gem "figaro"
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

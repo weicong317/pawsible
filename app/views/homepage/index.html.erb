@@ -6,39 +6,39 @@
 <div class="container">
     <h1>Top Dogs:</h1>
     <!-- #we need a carousel for the top dogs. The top three higest scoring dogs will be our top dogs!-->
-    <div>
-        <% @top_user.each_with_index do |dog, index| %>
-          <p><%= image_tag dog.profile_pic %></p>
-          <p><%= dog.dog_name%></p> 
-          <p>Status: <%= dog.status %></p>
-          <p>Ranking: <%= index + 1 %></p>  
-          <p>Onwed By: <%= dog.owner_name %></p> 
+<div>
+    <% @top_user.each_with_index do |dog, index| %>
+      <p><%= image_tag dog.profile_pic %></p>
+      <p><%= dog.dog_name%></p> 
+      <p>Status: <%= dog.status %></p>
+      <p>Ranking: <%= index + 1 %></p>  
+      <p>Onwed By: <%= dog.owner_name %></p> 
 
-          <%= button_to "View Profile", user_path(dog.id), method: :get %>
-        <% end %>
-    </div>
+      <%= button_to "View Profile", user_path(dog.id), method: :get %>
+    <% end %>
+</div>
 
-    <!-- #we need cards for the lastest (6?) dog posts. Build into the controller that only the latest 6 are pulled through! -->
-    <div>
-        <% @uploads.each do |upload| %>
-          <video controls="controls" autobuffer="true" width="300" src="<%= upload.media %>"></video>
-          <p><%= upload.challenge.title%> </p> 
-          <p>Completed By: <%= upload.user.dog_name %></p> 
-          <p>Status: <%= upload.user.status %></p>
-          <p>Owned By: <%= upload.user.owner_name %></p>
-        <% end %>
-    </div>
+<!-- #we need cards for the lastest (6?) dog posts. Build into the controller that only the latest 6 are pulled through! -->
+<div>
+    <% @uploads.each do |upload| %>
+      <video controls="controls" autobuffer="true" width="300" src="<%= upload.media.url %>"></video>
+      <p><%= upload.challenge.title%> </p> 
+      <p>Completed By: <%= upload.user.dog_name %></p> 
+      <p>Status: <%= upload.user.status %></p>
+      <p>Owned By: <%= upload.user.owner_name %></p>
+    <% end %>
+ </div>
 
-    <div>
-      <ul>
-        <% @leaderboard.each_with_index do |dog, index| %>
-          <p><%= image_tag dog.profile_pic %></p>
-          <li><%= dog.dog_name %></li>
-          <li>Ranking: <%= index + 1 %></li> 
-          <li>Points: <%= dog.total_points %></li> 
-          <li>Owned By: <%= dog.owner_name %></li>
-          <%= button_to "View Profile", user_path(dog.id), method: :get %>
-        <% end %>
-      </ul>
-    </div>
+<div>
+  <ul>
+    <% @leaderboard.each_with_index do |dog, index| %>
+      <p><%= image_tag dog.profile_pic %></p>
+      <li><%= dog.dog_name %></li>
+      <li>Ranking: <%= index + 1 %></li> 
+      <li>Points: <%= dog.total_points %></li> 
+      <li>Owned By: <%= dog.owner_name %></li>
+      <%= button_to "View Profile", user_path(dog.id), method: :get %>
+    <% end %>
+  </ul>
+
 </div>
