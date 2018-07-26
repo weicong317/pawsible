@@ -1,5 +1,7 @@
 <div>
-	<%= image_tag @user.profile_pic %>
+	<% if @user.profile_pic.nil? === false %>
+		<%= image_tag @user.profile_pic %>
+	<% end %>
 	<h1><%= @user.dog_name %></h1>
 	<h2>Status: <%= @user.status %></h2>
 	<p>Breed: <%= @user.breed %></p>
