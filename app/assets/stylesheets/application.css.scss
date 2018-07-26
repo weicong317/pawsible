@@ -40,11 +40,25 @@
 	background-size: cover;
 	background-position: center;
   	text-align: center;
+  	height: 600px;
+  	padding: 10rem 4rem;
 }
 
 @media (min-width: 576px){
 	.jumbotron {
 	    padding: 14rem 6rem;
 	}
+}
+
+.carousel {
+	background-color: black; 
+}
+
+.carousel-inner {
+	height: 540px;
+}
+
+.carousel-item {
+	height: 540px;
 }
 
