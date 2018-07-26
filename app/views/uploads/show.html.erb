@@ -1,7 +1,11 @@
 <!-- Section wth video/image (this needs to larger/full size for this page) -->
 
 <div>
-  <video controls="controls" autobuffer="true" width="300" src="<%= @upload.media.url %>"></video>
+  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
+  	<video controls="controls" autobuffer="true" width="300" src="<%= @upload.media.url %>"></video>
+	<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
+    <%= image_tag @upload.media.url.to_s %>
+	<% end %>
 </div>
 
 <!-- Section with challenge details, add/remove as you like! or shuffle order etc. Maybe we have a smaller version of the user avatar below the video too? Turn buttons to links etc if wanted.-->
@@ -19,10 +23,24 @@
 </div>
 
 <div>
-  <p>suggest video from same challenge</p>
-  <% @same_kind.each do |video| %>
-    <video controls="controls" autobuffer="true" width="300" src="<%= video.media.url %>"></video>
-  <% end %>
+  <p>suggestion from same challenge</p>
+	<div>
+		Video:
+		<% @same_kind.each do |video| %>
+			<% if %w(mp4).include?(video.media.file.extension.downcase) %>
+				<video controls="controls" autobuffer="true" width="300" src="<%= video.media.url %>"></video>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div>
+		Picture:
+		<% @same_kind.each do |picture| %>
+			<% if %w(jpg jpeg gif png).include?(picture.media.file.extension.downcase) %>
+				<%= image_tag picture.media.url.to_s %>
+			<% end %>
+		<% end %>
+	</div>
 </div>
 
 
