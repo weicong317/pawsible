@@ -1,19 +1,31 @@
-<div>
-	<%= image_tag @user.profile_pic %>
-	<h1><%= @user.dog_name %></h1>
-	<h2>Status: <%= @user.status %></h2>
-	<p>Breed: <%= @user.breed %></p>
-	<p>Parent: <%= @user.owner_name %></p>
-	<p>Biography: <%= @user.bio %></p>
-	<p>Point I have: <%= @user.total_points %></p>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-lg-4">
+			<%= image_tag @user.profile_pic, class:"profile-pic mt-4 ml-4" %>
+		</div>
+		<div class="col-sm-12 col-lg-6">
+			<h2 class="my-4"><%= @user.dog_name %></h2>
+			<p class="lead">Status: <%= @user.status %></p>
+			<p>Breed: <%= @user.breed %></p>
+			<p>Parent: <%= @user.owner_name %></p>
+			<p>Biography: <%= @user.bio %></p>
+			<p>Points I have: <%= @user.total_points %></p>
+			<%= button_to "Edit Profile", edit_user_path(@user.id), method: :get, class:"btn btn-primary"%>
+		</div>
+	</div>
+
+
+	<div class="row my-4">
+	    <% @user.uploads.each do |upload| %>
+	    <div class="col-sm-6 col-lg-3">
+	    	<div class="card">
+	    		<div class="card-body">
+					<video class="card-img-top" controls="controls" autobuffer="true" width="300" src="<%= upload.media %>"></video>
+					<p><%= upload.challenge.title %> </p> 
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>
 
-<%= button_to "Edit Profile", edit_user_path(@user.id), method: :get %>
-
-<!--Above Will be: edit_user_path, method: :get -->
-<!-- Problem to solve: Two tyoes of media, video -->
-
-<% @user.uploads.each do |upload| %>
-	<p><%= upload.challenge.title %> </p> 
-	<video controls="controls" autobuffer="true" width="300" src="<%= upload.media %>"></video>
-<% end %>

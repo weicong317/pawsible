@@ -13,5 +13,25 @@
  *= require_tree .
  *= require_self
  */
- 
+
 @import "bootstrap";
+
+.profile-pic {
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+}
+
+.card {
+	border: 0;
+}
+
+.card-body {
+	padding: 12px;
+}
+
+.card-title {
+	margin: 0.75rem 0;
+}
+
+
