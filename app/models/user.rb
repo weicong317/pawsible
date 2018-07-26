@@ -8,5 +8,5 @@ class User < ApplicationRecord
   # validates :dog_name, presence: true
   # validates :bio, presence: true
 
-  enum status: [:"underdog", :"good dog", :"clever dog", :"hotdog", :"top dog"]
+  enum status: [:"004-underdog.png", :"003-gooddog.png", :"002-cleverdog.png", :"001-hotdog.png", :"005-topdog.png"]
 end
