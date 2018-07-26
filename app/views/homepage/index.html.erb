@@ -22,7 +22,7 @@
 <!-- #we need cards for the lastest (6?) dog posts. Build into the controller that only the latest 6 are pulled through! -->
 <div>
     <% @uploads.each do |upload| %>
-      <video controls="controls" autobuffer="true" width="300" src="<%= upload.media %>"></video>
+      <video controls="controls" autobuffer="true" width="300" src="<%= upload.media.url %>"></video>
       <p><%= upload.challenge.title%> </p> 
       <p>Completed By: <%= upload.user.dog_name %></p> 
       <p>Status: <%= upload.user.status %></p>
