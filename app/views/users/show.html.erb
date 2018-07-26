@@ -1,20 +1,32 @@
-<div>
-	<h1><%= @user.dog_name %></h1>
-	<h2><%= "Status: #{@user.status}" %></h2>
-	<p><%= "Breed: #{@user.breed}" %></p>
-	<p><%= "Mum/Dad: #{@user.owner_name}" %></p>
-	<p><%= "Bio: #{@user.bio}" %></p>
-	<%= image_tag @user.profile_pic %>
-</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-lg-4">
+			<%= image_tag @user.profile_pic, class:"profile-pic" %>
+		</div>
+		<div class="col-sm-12 col-lg-8 pt-4">
+			<h1 class="my-4"><%= @user.dog_name %></h1>
+			<p class="lead"><%= "Status: #{@user.status}" %></p>
+			<p><%= "Breed: #{@user.breed}" %></p>
+			<p><%= "Mum/Dad: #{@user.owner_name}" %></p>
+			<p><%= "Bio: #{@user.bio}" %></p>
+			<%= button_to ("Edit Profile")%>
+		</div>
+	</div>
 
-<%= button_to ("Edit Profile ")%>
 
-<!--Above Will be: edit_user_path, method: :get -->
-<!-- Problem to solve: Two tyoes of media, video and image -->
-
-    <% @user.uploads.each do |upload| %>
-    <p><%= upload.challenge.title %> </p> 
-    <p><%="Points Gained: #{upload.challenge.points}" %></p> 
-    <%= video_tag upload.media %> 
-
- <% end %>
+	<!--Above Will be: edit_user_path, method: :get -->
+	<!-- Problem to solve: Two tyoes of media, video and image -->
+		<div class="row">
+		    <% @user.uploads.each do |upload| %>
+		    <div class="col-sm-6 col-lg-3">
+		    	<div class="card">
+		    		<div class="card-body">
+					    <p><%= upload.challenge.title %> </p> 
+					    <p><%="Points Gained: #{upload.challenge.points}" %></p> 
+					    <%= video_tag upload.media %> 
+				    </div>
+				</div>
+			</div>
+		 	<% end %>
+		</div>
+ </div>

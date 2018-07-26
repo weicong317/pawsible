@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(1)
+    @user = User.find(7)
   end
 
   private
