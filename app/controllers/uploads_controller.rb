@@ -8,6 +8,9 @@ class UploadsController < ApplicationController
     upload = Upload.new(create_params)
     upload.update(challenge_id: params[:challenge_id], user_id: current_user.id)
     if upload.save
+      user = User.find(upload.user_id)
+      user.update(total_points: user.total_points + upload.challenge.points)
+
       redirect_to upload_path(upload)
     else
       flash.now[:error] = "Upload failed!"
