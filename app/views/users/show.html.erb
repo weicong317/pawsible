@@ -11,7 +11,7 @@
 <%= button_to "Edit Profile", edit_user_path(@user.id), method: :get %>
 
 <!--Above Will be: edit_user_path, method: :get -->
-<!-- Problem to solve: Two tyoes of media, video and image -->
+<!-- Problem to solve: Two tyoes of media, video -->
 
 <% @user.uploads.each do |upload| %>
 	<p><%= upload.challenge.title %> </p> 

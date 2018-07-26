@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :challenges, only: [:index]
   resources :users, only: [:create, :show, :edit, :update]
 
   # from clearance

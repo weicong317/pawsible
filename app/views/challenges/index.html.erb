@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Points</th>
+    <th>Sponsor</th>
+  </tr>
+  <% @challenges.each do |row| %>
+    <tr>
+      <td><%= row.title %></td>
+      <td><%= row.description %></td>
+      <td><%= row.points %></td>
+      <td><%= row.sponsor %></td>
+    </tr>
+  <% end %>
+</table>
