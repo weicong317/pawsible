@@ -1,20 +1,19 @@
 <div>
-	<h1><%= @user.dog_name %></h1>
-	<h2><%= "Status: #{@user.status}" %></h2>
-	<p><%= "Breed: #{@user.breed}" %></p>
-	<p><%= "Mum/Dad: #{@user.owner_name}" %></p>
-	<p><%= "Bio: #{@user.bio}" %></p>
 	<%= image_tag @user.profile_pic %>
+	<h1><%= @user.dog_name %></h1>
+	<h2>Status: <%= @user.status %></h2>
+	<p>Breed: <%= @user.breed %></p>
+	<p>Parent: <%= @user.owner_name %></p>
+	<p>Biography: <%= @user.bio %></p>
+	<p>Point I have: <%= @user.total_points %></p>
 </div>
 
-<%= button_to ("Edit Profile ")%>
+<%= button_to "Edit Profile", edit_user_path(@user.id), method: :get %>
 
 <!--Above Will be: edit_user_path, method: :get -->
 <!-- Problem to solve: Two tyoes of media, video and image -->
 
-    <% @user.uploads.each do |upload| %>
-    <p><%= upload.challenge.title %> </p> 
-    <p><%="Points Gained: #{upload.challenge.points}" %></p> 
-    <%= video_tag upload.media %> 
-
- <% end %>
+<% @user.uploads.each do |upload| %>
+	<p><%= upload.challenge.title %> </p> 
+	<video controls="controls" autobuffer="true" width="300" src="<%= upload.media %>"></video>
+<% end %>
