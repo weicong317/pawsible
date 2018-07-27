@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # validates :bio, presence: true
 
   enum status: [:"underdog", :"gooddog", :"cleverdog", :"hotdog", :"topdog"]
+  enum role: [:admin]
 
   def badge
     case total_points
