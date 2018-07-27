@@ -8,7 +8,11 @@
   <% @challenges.each do |row| %>
     <tr>
       <td><%= row.title %></td>
-      <td><%= link_to row.description, new_challenge_upload_path(row.id) %></td>
+      <% if signed_in? and current_user.role === "admin" %>
+        <td><%= link_to row.description, edit_challenge_path(row.id) %></td>
+      <% else %>
+        <td><%= link_to row.description, new_challenge_upload_path(row.id) %></td>
+      <% end %>
       <td><%= row.points %></td>
       <td><%= row.sponsor %></td>
     </tr>
