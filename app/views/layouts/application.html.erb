@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%# navbar which will show at all pages %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="<%=root_path%>">Pawsible</a>
         
@@ -18,17 +19,21 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        <%# show upload index link no matter sign in or not %>
+        <%= link_to "Feeds", uploads_path %>
+        <%# show challenges index link no matter sign in or not %>
+        <%= link_to "Challenges", challenges_path %>
+        <%# if signed in, show user's email, if not show sign in/sign up link %>
         <% if signed_in? %>
-          Signed in as: <%= current_user.email %>
+          <%= current_user.email %>
           <%= button_to 'Sign out', sign_out_path, method: :delete %>
         <% else %>
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><%= link_to t(".sign_in"), sign_in_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "Sign in/Sign up", sign_in_path, class:"nav-link" %></li>
           </ul>
         <% end %>
-
       </div>
+
     </nav>
 
     <div id="flash">

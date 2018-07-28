@@ -18,7 +18,7 @@
         <% if index > 0 %>
         <!-- Make a row and col div to let them float left and right respectively! ####################333-->
           <div class="carousel-item">
-            <%= image_tag dog.profile_pic, class:"d-block"%>
+            <%= image_tag dog.profile_pic.url.to_s, class:"d-block"%>
           
             <div class="carousel-caption d-none d-md-block">
               <p><%= image_tag dog.profile_pic.url.to_s %></p>
@@ -33,7 +33,7 @@
           </div>
         <% else %>
           <div class="carousel-item active">
-            <%= image_tag dog.profile_pic, class:"d-block", alt:"First Slide"%>
+            <%= image_tag dog.profile_pic.url.to_s, class:"d-block", alt:"First Slide"%>
             
             <div class="carousel-caption d-none d-md-block">
               <h5><%= dog.dog_name%></h5>
