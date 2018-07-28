@@ -36,6 +36,10 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
+  def leaderboard
+    @leaderboard = User.all.order(:total_points).reverse_order
+  end
+
   private
   def create_params
     params.require(:user).permit(:owner_name, :email, :password, :dog_name, :breed, :bio, :profile_pic)

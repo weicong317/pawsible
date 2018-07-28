@@ -1,0 +1,15 @@
+<h1>Leader Board:</h1>
+
+<div>
+  <ul>
+    <% @leaderboard.each_with_index do |dog, index| %>
+      <p><%= image_tag dog.profile_pic.url.to_s %></p>
+      <p><%= image_tag(dog.badge) %></p>
+      <li><%= dog.dog_name %></li>
+      <li>Ranking: <%= index + 1 %></li> 
+      <li>Points: <%= dog.total_points %></li> 
+      <li>Owned By: <%= dog.owner_name %></li>
+      <%= button_to "View Profile", user_path(dog.id), method: :get %>
+    <% end %>
+  </ul>
+</div>
