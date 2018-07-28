@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.new(create_params)
     @user.update(status: 0, total_points: 0)
     if @user.save
+      UserJob.perform_later(@user)
       sign_in @user
       redirect_to user_path(@user.id)
     else
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def leaderboard
-    @leaderboard = User.all.order(:total_points).reverse_order
+    @leaderboard = User.all.order(:total_points).reverse_order.page params[:page]
   end
 
   private

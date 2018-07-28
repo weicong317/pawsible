@@ -23,6 +23,8 @@
         <%= link_to "Feeds", uploads_path %>
         <%# show challenges index link no matter sign in or not %>
         <%= link_to "Challenges", challenges_path %>
+        <%# show leaderboard index link no matter sign in or not %>
+        <%= link_to "Leader Board", leaderboard_path %>
         <%# if signed in, show user's email, if not show sign in/sign up link %>
         <% if signed_in? %>
           <%= current_user.email %>
