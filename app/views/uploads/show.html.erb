@@ -11,7 +11,11 @@
 	<p>Completed By: <%= @upload.user.dog_name %></p>
 	<p>Owner: <%= @upload.user.owner_name %></p>
 	<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
-	<li><%= image_tag @upload.user.profile_pic.url.to_s %></li>
+	<% if !@upload.user.profile_pic.file.nil? %>
+		<li><%= image_tag @upload.user.profile_pic.url.to_s %></li>
+	<% else %>
+		<li><%= image_tag "profile_pic.png" %></li>
+	<% end %>   
   <li><%= image_tag(@upload.user.badge) %></li>
 
 

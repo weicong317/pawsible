@@ -3,7 +3,11 @@
 <div>
   <ul>
     <% @leaderboard.each_with_index do |dog, index| %>
-      <p><%= image_tag dog.profile_pic.url.to_s %></p>
+      <% if !dog.profile_pic.file.nil? %>
+        <p><%= image_tag dog.profile_pic.url.to_s %></p>
+      <% else %>
+        <p><%= image_tag "profile_pic.png" %></p>
+      <% end %>   
       <p><%= image_tag(dog.badge) %></p>
       <li><%= dog.dog_name %></li>
       <li>Ranking: <%= index + 1 %></li> 

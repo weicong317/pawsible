@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:edit, :update, :profilePic, :profilePic_update, :destroy]
   def new 
   end
   
@@ -41,6 +42,11 @@ class UsersController < ApplicationController
     @leaderboard = User.all.order(:total_points).reverse_order.page params[:page]
   end
 
+  def destroy
+    User.find(params[:id]).delete
+    redirect_to root_path
+  end
+
   private
   def create_params
     params.require(:user).permit(:email, :password)
@@ -52,5 +58,12 @@ class UsersController < ApplicationController
 
   def profilePic_params
     params.require(:profile_pic).permit(:profile_pic)
+  end
+
+  def require_login
+    unless signed_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to sign_in_path
+    end
   end
 end

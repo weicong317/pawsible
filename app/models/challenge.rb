@@ -1,5 +1,5 @@
 class Challenge < ApplicationRecord
-  has_many :uploads
+  has_many :uploads, dependent: :destroy
 
   # validates :sponsor, presence: true
   # validates :title, presence: true

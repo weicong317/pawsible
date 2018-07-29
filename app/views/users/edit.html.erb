@@ -13,4 +13,5 @@
   <br>
   <%= f.submit "Update Profile" %>
 <% end %>
-      
+
+<%= button_to "Delete Account", user_path(current_user.id), method: :delete, :data => {:confirm => 'Are you sure?'} %>

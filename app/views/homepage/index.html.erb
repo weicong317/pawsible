@@ -19,10 +19,17 @@
       <% @top_dog.each_with_index do |dog, index| %>
         <% if index > 0 %>
           <div class="carousel-item">
-            <%= image_tag dog.profile_pic.url.to_s, class:"d-block"%>
-          
+			      <% if !dog.profile_pic.file.nil? %>
+              <%= image_tag dog.profile_pic.url.to_s, class:"d-block"%>
+            <% else %>
+				      <%= image_tag "profile_pic.png", class:"d-block" %>
+            <% end %>          
             <div class="carousel-caption d-none d-md-block">
-              <p><%= image_tag dog.profile_pic.url.to_s %></p>
+              <% if !dog.profile_pic.file.nil? %>
+                <p><%= image_tag dog.profile_pic.url.to_s %></p>                
+              <% else %>
+                <p><%= image_tag "profile_pic.png" %></p>
+              <% end %>  
               <p><%= image_tag(dog.badge) %></p>
               <h5><%= dog.dog_name%></h5>
               <p>Status: <%= dog.status %></p>
@@ -34,8 +41,11 @@
           </div>
         <% else %>
           <div class="carousel-item active">
-            <%= image_tag dog.profile_pic.url.to_s, class:"d-block", alt:"First Slide"%>
-            
+            <% if !dog.profile_pic.file.nil? %>
+              <%= image_tag dog.profile_pic.url.to_s, class:"d-block", alt:"First Slide" %>                
+            <% else %>
+              <%= image_tag "profile_pic.png", class:"d-block", alt:"First Slide" %>
+            <% end %>
             <div class="carousel-caption d-none d-md-block">
               <h5><%= dog.dog_name%></h5>
               <p>Status: <%= dog.status %></p>
@@ -69,9 +79,11 @@
             <div class="card-body">
               <%# if is video, show video, if image, show image %>
               <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
-                <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+                <a href="<%= upload_path(upload.id) %>">
+                  <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+                </a>
               <% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
-                <%= image_tag upload.media.url.to_s %>
+                <%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
               <% end %>
               <p><%= upload.challenge.title%> </p> 
               <p>Completed By: <%= upload.user.dog_name %></p> 
@@ -93,7 +105,11 @@
     <div>
       <ul>
         <% @leaderboard.each_with_index do |dog, index| %>
-          <p><%= image_tag dog.profile_pic.url.to_s %></p>
+          <% if !dog.profile_pic.file.nil? %>
+            <p><%= image_tag dog.profile_pic.url.to_s %></p>
+          <% else %>
+            <p><%= image_tag "profile_pic.png" %></p>
+          <% end %>
           <p><%= image_tag(dog.badge) %></p>
           <li><%= dog.dog_name %></li>
           <li>Ranking: <%= index + 1 %></li> 
