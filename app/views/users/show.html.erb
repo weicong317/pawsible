@@ -34,9 +34,11 @@
 	    	<div class="card">
 	    		<div class="card-body">
 						<% if %w(mp4).include?(upload.media.file.extension.downcase) %>
-							<video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+      				<a href="<%= upload_path(upload.id) %>">
+								<video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+							</a>
 						<% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
-							<%= image_tag upload.media.url.to_s %>
+							<%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
 						<% end %>
 						<p><%= upload.challenge.title %></p> 
 					</div>
