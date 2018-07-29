@@ -38,6 +38,15 @@ gem "fog-aws"
 # To store sensitive info without upload to git
 gem "figaro"
 
+# Use to do pagination
+gem 'kaminari'
+
+# Use to see the email being sent in development stage
+gem "letter_opener", :group => :development
+
+# To perform background job
+gem 'sidekiq'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

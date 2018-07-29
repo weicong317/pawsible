@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%# navbar which will show at all pages %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="<%=root_path%>">Pawsible</a>
         
@@ -18,17 +19,29 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        <%# show upload index link no matter sign in or not %>
+        <%= link_to "Feeds", uploads_path %>
+        <%# show challenges index link no matter sign in or not %>
+        <%= link_to "Challenges", challenges_path %>
+        <%# show leaderboard index link no matter sign in or not %>
+        <%= link_to "Leader Board", leaderboard_path %>
+        <%# show challenges update link if user is admin %>
+        <% if signed_in? && current_user.role === "admin" %>
+          <%= link_to "Post new challenge", new_challenge_path %>
+        <% end %>
+        <%# if signed in, show user's email, if not show sign in/sign up link %>
         <% if signed_in? %>
-          Signed in as: <%= current_user.email %>
+          <%= current_user.email %>
+          <%= link_to "Profile", current_user %>
           <%= button_to 'Sign out', sign_out_path, method: :delete %>
         <% else %>
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><%= link_to t(".sign_in"), sign_in_path, class:"nav-link" %></li>
+            <%# this will link to a page that contain sign up/sign in by using AJAX %>
+            <li class="nav-item"><%= link_to "Sign in/Sign up", session_new_path, class:"nav-link" %></li>
           </ul>
         <% end %>
-
       </div>
+
     </nav>
 
     <div id="flash">

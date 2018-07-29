@@ -5,6 +5,8 @@
 
 <div class="container">
 
+  <%# to show top 3 dogs in carousel way %>
+
   <h1>Top Dogs:</h1>
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -14,14 +16,20 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner my-4">
-      <% @top_user.each_with_index do |dog, index| %>
+      <% @top_dog.each_with_index do |dog, index| %>
         <% if index > 0 %>
-        <!-- Make a row and col div to let them float left and right respectively! ####################333-->
           <div class="carousel-item">
-            <%= image_tag dog.profile_pic, class:"d-block"%>
-          
+			      <% if !dog.profile_pic.file.nil? %>
+              <%= image_tag dog.profile_pic.url.to_s, class:"d-block"%>
+            <% else %>
+				      <%= image_tag "profile_pic.png", class:"d-block" %>
+            <% end %>          
             <div class="carousel-caption d-none d-md-block">
-              <p><%= image_tag dog.profile_pic.url.to_s %></p>
+              <% if !dog.profile_pic.file.nil? %>
+                <p><%= image_tag dog.profile_pic.url.to_s %></p>                
+              <% else %>
+                <p><%= image_tag "profile_pic.png" %></p>
+              <% end %>  
               <p><%= image_tag(dog.badge) %></p>
               <h5><%= dog.dog_name%></h5>
               <p>Status: <%= dog.status %></p>
@@ -33,8 +41,11 @@
           </div>
         <% else %>
           <div class="carousel-item active">
-            <%= image_tag dog.profile_pic, class:"d-block", alt:"First Slide"%>
-            
+            <% if !dog.profile_pic.file.nil? %>
+              <%= image_tag dog.profile_pic.url.to_s, class:"d-block", alt:"First Slide" %>                
+            <% else %>
+              <%= image_tag "profile_pic.png", class:"d-block", alt:"First Slide" %>
+            <% end %>
             <div class="carousel-caption d-none d-md-block">
               <h5><%= dog.dog_name%></h5>
               <p>Status: <%= dog.status %></p>
@@ -58,35 +69,58 @@
     </div>
   </div>
 
-  <h1>Dog Feeds:</h1>
-  <div class="row my-4">
-    <% @uploads.each do |upload| %>
-    <div class="col-sm-6 col-lg-3">
-      <div class="card">
-        <div class="card-body">  
-          <video class="card-img-top" controls="controls" autobuffer="true" width="300" src="<%= upload.media.url %>"></video>
-          <p><%= upload.challenge.title%> </p> 
-          <p>Completed By: <%= upload.user.dog_name %></p> 
-          <p>Status: <%= upload.user.status %></p>
-          <p>Owned By: <%= upload.user.owner_name %></p>
+  <%# to show the latest 8 feed by dogs and have a button to link to feeds page when > 0 %>
+  <% if @uploads.size > 0 %>
+    <h1>Dog Feeds:</h1>
+    <div class="row my-4">
+      <% @uploads.each do |upload| %>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <%# if is video, show video, if image, show image %>
+              <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
+                <a href="<%= upload_path(upload.id) %>">
+                  <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+                </a>
+              <% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
+                <%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
+              <% end %>
+              <p><%= upload.challenge.title%> </p> 
+              <p>Completed By: <%= upload.user.dog_name %></p> 
+              <p>Status: <%= upload.user.status %></p>
+              <p>Owned By: <%= upload.user.owner_name %></p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
-
-  <div>
-    <ul>
-      <% @leaderboard.each_with_index do |dog, index| %>
-        <p><%= image_tag dog.profile_pic.url.to_s %></p>
-        <p><%= image_tag(dog.badge) %></p>
-        <li><%= dog.dog_name %></li>
-        <li>Ranking: <%= index + 1 %></li> 
-        <li>Points: <%= dog.total_points %></li> 
-        <li>Owned By: <%= dog.owner_name %></li>
-        <%= button_to "View Profile", user_path(dog.id), method: :get %>
       <% end %>
-    </ul>
-  </div>
+    </div>
+
+    <%= button_to "View all feed", uploads_path, method: :get %>
+  <% end %>  
+
+  <%# to show the top 10 dogs in leaderboard way and a button to link to the full leaderboard when > 0 %>
+  <% if @leaderboard.size > 0 %>
+    <h1>Leader Board:</h1>
+
+    <div>
+      <ul>
+        <% @leaderboard.each_with_index do |dog, index| %>
+          <% if !dog.profile_pic.file.nil? %>
+            <p><%= image_tag dog.profile_pic.url.to_s %></p>
+          <% else %>
+            <p><%= image_tag "profile_pic.png" %></p>
+          <% end %>
+          <p><%= image_tag(dog.badge) %></p>
+          <li><%= dog.dog_name %></li>
+          <li>Ranking: <%= index + 1 %></li> 
+          <li>Points: <%= dog.total_points %></li> 
+          <li>Owned By: <%= dog.owner_name %></li>
+          <%= button_to "View Profile", user_path(dog.id), method: :get %>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= button_to "View full leader board", leaderboard_path, method: :get %>
+  <% end %>
   
 </div>

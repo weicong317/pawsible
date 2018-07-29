@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: [:new, :create]
 
   def new
   end
@@ -20,13 +20,22 @@ class UploadsController < ApplicationController
 
   def show
     @upload = Upload.find(params[:id])
-    @same_kind = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order.limit(8)
+    @same_kind = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order
+    @same_kind = @same_kind.where.not(id: params[:id])
+    @same_kind = @same_kind.limit(8)
   end
 
   def index
+  end
+
+  def index_video
     @uploads = Upload.all.reverse_order
   end
 
+  def index_image
+    @uploads = Upload.all.reverse_order
+  end
+  
   private
   def require_login
     unless signed_in?

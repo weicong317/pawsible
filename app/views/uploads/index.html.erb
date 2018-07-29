@@ -1,17 +1,5 @@
-<div>
-  Video:
-  <% @uploads.each do |video| %>
-    <% if %w(mp4).include?(video.media.file.extension.downcase) %>
-      <video controls="controls" autobuffer="true" width="300" src="<%= video.media.url %>"></video>
-    <% end %>
-  <% end %>
-</div>
+<%# use ajax to merge this 2 things into 1 page %>
 
-<div>
-  Picture:
-  <% @uploads.each do |picture| %>
-    <% if %w(jpg jpeg gif png).include?(picture.media.file.extension.downcase) %>
-      <%= image_tag picture.media.url.to_s %>
-    <% end %>
-  <% end %>
-</div>
+<%= button_to "Video", uploads_video_path, method: :get %>
+
+<%= button_to "Image", uploads_image_path, method: :get %>
