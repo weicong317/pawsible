@@ -32,6 +32,7 @@
         <%# if signed in, show user's email, if not show sign in/sign up link %>
         <% if signed_in? %>
           <%= current_user.email %>
+          <%= link_to "Profile", current_user %>
           <%= button_to 'Sign out', sign_out_path, method: :delete %>
         <% else %>
           <ul class="navbar-nav mr-auto">

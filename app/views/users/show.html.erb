@@ -1,11 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-lg-4">
-			<% if @user.profile_pic.nil? === false %>
+			<% if !@user.profile_pic.file.nil? %>
 				<%= image_tag @user.profile_pic.url.to_s, class:"profile-pic mt-4 ml-4" %>
-				<p><%= image_tag(@user.badge) %></p>
+			<% else %>
+				<%= image_tag "profile_pic.png", class:"profile-pic mt-4 ml-4" %>
 			<% end %>
-			<%= button_to "Change Profile Picture", profile_pic_upload_path(@user.id), method: :get, class:"btn btn-primary"%>
+			<p><%= image_tag(@user.badge) %></p>
+			<% if !@user.profile_pic.file.nil? %>			
+				<%= button_to "Change Profile Picture", profile_pic_upload_path(@user.id), method: :get, class:"btn btn-primary"%>
+			<% else %>
+				<%= button_to "Upload Profile Picture", profile_pic_upload_path(@user.id), method: :get, class:"btn btn-primary"%>
+			<% end %>
 		</div>
 		<div class="col-sm-12 col-lg-6">
 			<h2 class="my-4"><%= @user.dog_name %></h2>

@@ -43,11 +43,11 @@ class UsersController < ApplicationController
 
   private
   def create_params
-    params.require(:user).permit(:owner_name, :email, :password, :dog_name, :breed, :bio, :profile_pic)
+    params.require(:user).permit(:email, :password)
   end
 
   def update_params
-    params.require(:profile).permit(:dog_name, :owner_name, :bio).reject{|_, v| v.blank?}
+    params.require(:profile).permit(:dog_name, :owner_name, :breed, :bio).reject{|_, v| v.blank?}
   end
 
   def profilePic_params
