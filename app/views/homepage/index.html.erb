@@ -66,8 +66,13 @@
       <% @uploads.each do |upload| %>
         <div class="col-sm-6 col-lg-3">
           <div class="card">
-            <div class="card-body">  
-              <video class="card-img-top" controls="controls" autobuffer="true" width="300" src="<%= upload.media.url %>"></video>
+            <div class="card-body">
+              <%# if is video, show video, if image, show image %>
+              <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+                <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+              <% elsif %w(jpg jpeg gif png).include?(picture.media.file.extension.downcase) %>
+                <%= image_tag picture.media.url.to_s %>
+              <% end %>
               <p><%= upload.challenge.title%> </p> 
               <p>Completed By: <%= upload.user.dog_name %></p> 
               <p>Status: <%= upload.user.status %></p>

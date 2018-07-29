@@ -25,6 +25,10 @@
         <%= link_to "Challenges", challenges_path %>
         <%# show leaderboard index link no matter sign in or not %>
         <%= link_to "Leader Board", leaderboard_path %>
+        <%# show challenges update link if user is admin %>
+        <% if signed_in? && current_user.role === "admin" %>
+          <%= link_to "Post new challenge", new_challenge_path %>
+        <% end %>
         <%# if signed in, show user's email, if not show sign in/sign up link %>
         <% if signed_in? %>
           <%= current_user.email %>
