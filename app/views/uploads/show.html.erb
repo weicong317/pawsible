@@ -3,7 +3,9 @@
   	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>"></video>
 	<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
     <%= image_tag @upload.media.url.to_s %>
+    <% else %>
 	<% end %>
+
 </div>
 
 <div>
