@@ -1,18 +1,47 @@
-<%# use ajax to merge this 2 things into 1 page %>
+<%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
+  <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
+  <datalist id="dropdown"></datalist>
 
-<%= button_to "Video", uploads_video_path, method: :get, remote: true %>
-
-<%= button_to "Image", uploads_image_path, method: :get, remote: true %>
+  <%= f.submit "Search" %>
+<% end %>
 
 <div id="feed-content">
-  Video:
-  <% @uploads.each do |video| %>
-    <% if !video.media.file.nil? %>
-      <% if %w(mp4).include?(video.media.file.extension.downcase) %>
-        <a href="<%= upload_path(video.id) %>">
-          <video controls="controls" preload="none" width="300" src="<%= video.media.url %>"></video>
+  <% if @uploads.size > 0 %>
+    <% @uploads.each do |media| %>
+      <% if %w(mp4).include?(media.media.file.extension.downcase) %>
+        <a href="<%= upload_path(media.id) %>">
+          <video controls="controls" preload="none" width="300" src="<%= media.media.url %>"></video>
         </a>
+      <% elsif %w(jpg jpeg gif png).include?(media.media.file.extension.downcase) %>
+        <%= link_to image_tag(media.media.url.to_s), upload_path(media.id) %>
       <% end %>
     <% end %>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let searchTitleArray = [];
+    $( "#filter_challenge" ).keyup(function(key) {
+      $.ajax({
+        method: "GET",
+        url: "/search/autocomplete",
+        data: $(this).serialize(),
+        dataType: "json"
+      })
+      .done(function( data ) {
+        if (data.length === 0 || ($("#filter_challenge").val().length === 0 && (key.keyCode === 8 || key.keyCode === 46)) ) {
+          $( "#dropdown" ).empty(); 
+          searchTitleArray = [];           
+        } else {
+          data.forEach(function(element) {
+            if (searchTitleArray.indexOf(element.title) === -1) {
+              searchTitleArray.push(element.title);
+              $( "#dropdown" ).append( `<option value=${element.title}>` );
+            };
+          });
+        };
+      });
+    });
+  });
+</script>
