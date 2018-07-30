@@ -26,10 +26,16 @@ class UploadsController < ApplicationController
   end
 
   def index
+    @uploads = Upload.all.reverse_order
   end
 
   def index_video
     @uploads = Upload.all.reverse_order
+
+    respond_to do |format|
+      format.html {render :index_video}
+      format.js
+    end
   end
 
   def index_image

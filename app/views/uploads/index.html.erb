@@ -1,5 +1,16 @@
 <%# use ajax to merge this 2 things into 1 page %>
 
-<%= button_to "Video", uploads_video_path, method: :get %>
+<%= button_to "Video", uploads_video_path, method: :get, remote: true %>
 
-<%= button_to "Image", uploads_image_path, method: :get %>
+<%= button_to "Image", uploads_image_path, method: :get, remote: true %>
+
+<div id="feed-content">
+  Video:
+  <% @uploads.each do |video| %>
+    <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+      <a href="<%= upload_path(video.id) %>">
+        <video controls="controls" preload="none" width="300" src="<%= video.media.url %>"></video>
+      </a>
+    <% end %>
+  <% end %>
+</div>
