@@ -61,4 +61,8 @@ Rails.application.configure do
 
   # clearance configure mailer
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  # letter opener to see the email being sent during development stage
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

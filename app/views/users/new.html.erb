@@ -3,14 +3,6 @@
     <h2 class="my-4"><%= t(".title") %></h2>
 
     <%= form_for @user do |form| %>
-      
-      <div class="text-field form-group row">
-        <%= form.label :owner_name, :Name, class:"col-sm-2 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.text_field :owner_name, class:"form-control" %>
-        </div>
-      </div>
-
       <div class="text-field form-group row">
         <%= form.label :email, class:"col-sm-2 col-form-label" %>
         <div class="col-sm-6">
@@ -22,34 +14,6 @@
         <%= form.label :password, class:"col-sm-2 col-form-label" %>
         <div class="col-sm-6">
           <%= form.password_field :password, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="text-field form-group row">
-        <%= form.label :dog_name, :"Dog name", class:"col-sm-2 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.text_field :dog_name, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="text-field form-group row">
-        <%= form.label :breed, class:"col-sm-2 col-form-label" %>
-        <div class="col-sm-6">
-         <%= form.text_field :breed, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="text-field form-group row">
-        <%= form.label :bio, :"Say something about the dog!", class:"col-sm-2 col-form-label" %>
-        <div class="col-sm-6">
-         <%= form.text_field :bio, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="text-field form-group row">
-        <%= form.label :profile_pic, "Profile Picture"%>
-        <div class="col-sm-6">
-          <%= form.file_field :profile_pic %>
         </div>
       </div>
 
