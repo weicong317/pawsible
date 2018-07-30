@@ -1,0 +1,8 @@
+<div>
+  Picture:
+  <% @uploads.each do |picture| %>
+    <% if %w(jpg jpeg gif png).include?(picture.media.file.extension.downcase) %>
+      <%= link_to image_tag(picture.media.url.to_s), upload_path(picture.id) %>
+    <% end %>
+  <% end %>
+</div>

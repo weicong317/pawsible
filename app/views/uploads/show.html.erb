@@ -1,40 +1,38 @@
-
-<!-- Section wth video/image (this needs to larger/full size for this page) -->
-
 <div>
-      <%= video_tag @upload.media %> 
+  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
+  	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>"></video>
+	<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
+    <%= image_tag @upload.media.url.to_s %>
+	<% end %>
 </div>
 
- 
-
-<!-- Section with challenge details, add/remove as you like! or shuffle order etc. Maybe we have a smaller version of the user avatar below the video too? Turn buttons to links etc if wanted.-->
-
 <div>
+	<p>Challenge: <%= @upload.challenge.title %></p>
+	<p>Completed By: <%= @upload.user.dog_name %></p>
+	<p>Owner: <%= @upload.user.owner_name %></p>
+	<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
+	<% if !@upload.user.profile_pic.file.nil? %>
+		<li><%= image_tag @upload.user.profile_pic.url.to_s %></li>
+	<% else %>
+		<li><%= image_tag "profile_pic.png" %></li>
+	<% end %>   
+  <li><%= image_tag(@upload.user.badge) %></li>
 
-	<p><%="Challenge: #{@upload.challenge}" %></p>
-	<p><%="Completed by: #{@upload.user.dog_name}" %></p>
-	<p><%="Owner: #{@upload.user.owner_name}" %></p>
-	<p><%="Sponsored by: #{@upload.challenge.sponsor}" %></p>
-	<li><%= image_tag @upload.user.profile_pic %></li>
 
-	<%= button_to ("View Profile")%>
-
+	<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
 </div>
 
-
-
-<!-- Back button to return to previous page -->
-
 <div>
-	<%= button_to ("Back")%>
+  <p>suggestion from same challenge</p>
+	<div>
+		<% @same_kind.each do |media| %>
+			<% if %w(mp4).include?(media.media.file.extension.downcase) %>
+      	<a href="<%= upload_path(media.id) %>">
+					<video controls="controls" preload="none" width="300" src="<%= media.media.url %>"></video>
+				</a>
+			<% elsif %w(jpg jpeg gif png).include?(media.media.file.extension.downcase) %>
+      	<%= link_to image_tag(media.media.url.to_s), upload_path(media.id) %>
+			<% end %>
+		<% end %>
+	</div>
 </div>
-
-
-
-<!-- Below here do we want to add 'suggested videos' etc based on challenge? 'Other dogs that completed this challenge etc?' -->
-
-
-
-
-
-
