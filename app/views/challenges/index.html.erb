@@ -1,41 +1,82 @@
 
 
+
 <!-- SPONSOR IMAGE -->
 
-<div class=“text-center”>
- <img src=“http://via.placeholder.com/1500x250” class=“img-fluid max-width: 100%;” alt=“sponsorimage”>
+<div class="text-center">
+ <img src="http://via.placeholder.com/1500x250" class="img-fluid max-width: 100%;" alt="sponsorimage">
 </div></br></br>
+
 
 
 <!-- text Area -->
 
-<div class=“text-center”>
+<div class="text-center">
  <h2>This Week’s Challenges</h1>
 </div></br>
 
 
+
 <!-- CARDS / 3 PER ROW / HEAVE LEFT THE IMAGE IN CASE WANTED TO ADD? -->
 
-<div class=“container”>
-   <div class=“row”>
+<div class="container">
+   <div class="row">
        
       <% @challenges.each do |challenge| %>
+      
 
       <!-- Here we need another if statement, that either removes, or changes how the challenge look if it has already been completed?  -->
        
-       <div class=“col-md-6 col-lg-4 col-xl-3”>
-       <div class=“card”>
-       <img class=“card-img-top img-fluid” src=“//placehold.it/500x280" alt=“Card image cap”>
-               
-          <div class=“card-block”>
-          <h5 class=“card-title”><%= challenge.title %></h5>  
-          <h6 class=“card-subtitle mb-2 text-muted”><%= challenge.description %></h6>
-          <%= button_to “Complete Challenge”, new_challenge_upload_path(challenge.id), method: :get, class:“btn btn-primary”%></br>
-               
+         <div class="col-sm-4">
+           <div class="card">
+               <img class="card-img-top img-fluid" src="http://placehold.it/500x280">
+                     
+               <div class="card-block">
+                 <h5 class="card-title"><%= challenge.title %></h5>  
+                 <h6 class="card-subtitle mb-2 text-muted"><%= challenge.description %></h6>
+                 <% if signed_in? && current_user.role === "admin" %>
+                 <%= button_to "Complete Challenge", new_challenge_upload_path(challenge.id), method: :get, class:"btn btn-primary"%></br>
+                 <% else %>
+                 <%= button_to "Complete Challenge", new_challenge_upload_path(challenge.id), method: :get, class:"btn btn-primary"%></br>
+                 <% end %>
+                       
                </div>
-           </div>
-       </div>
-    <% end %></br>
-   </div>
-</div></br></br>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
 
+</br></br>
+
+
+
+<!-- Modal added -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal added -->
