@@ -1,21 +1,83 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Points</th>
-    <th>Sponsor</th>
-  </tr>
-  s
-  <% @challenges.each do |row| %>
-    <tr>
-      <td><%= row.title %></td>
-      <% if signed_in? and current_user.role === "admin" %>
-        <td><%= link_to row.description, edit_challenge_path(row.id) %></td>
-      <% else %>
-        <td><%= link_to row.description, new_challenge_upload_path(row.id) %></td>
-      <% end %>
-      <td><%= row.points %></td>
-      <td><%= row.sponsor %></td>
-    </tr>
-  <% end %>
-</table>
+
+
+<!-- SPONSOR IMAGE -->
+
+<div class="text-center">
+ <img src="http://via.placeholder.com/1500x250" class="img-fluid max-width: 100%;" alt="sponsorimage">
+</div></br></br>
+
+
+<!-- text Area -->
+
+<div class="text-center">
+ <h2>This Week’s Challenges</h1>
+</div></br>
+
+
+<!-- CARDS / 3 PER ROW / HEAVE LEFT THE IMAGE IN CASE WANTED TO ADD? -->
+
+<div class="container">
+   <div class="row">
+       
+      <% @challenges.each do |challenge| %>
+      
+
+      <!-- Here we need another if statement, that either removes, or changes how the challenge look if it has already been completed?  -->
+       
+         <div class="col-sm-4">
+           <div class="card">
+               <img class="card-img-top img-fluid" src="http://placehold.it/500x280">
+                     
+               <div class="card-block">
+                 <h5 class="card-title"><%= challenge.title %></h5>  
+                 <h6 class="card-subtitle mb-2 text-muted"><%= challenge.description %></h6>
+                 <p class="card-subtitle mb-2 text-muted"><%= "Win #{challenge.points} points" %></p>
+                 <% if signed_in? %>
+
+                    <button type="button" class="mb-4 btn btn-primary" data-toggle="modal" data-target="#challenge-<%= challenge.id %>">
+                      Complete Challenge
+                    </button>
+
+                    <div class="modal fade" id="challenge-<%= challenge.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Complete Challenge, <%= challenge.title %></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                 
+
+
+
+                    <!-- This is the content of the modal, to complete challenge -->
+
+                        <%= form_with scope: :upload, url: challenge_uploads_path(challenge.id), local: true do |f| %>
+                          <%= f.label :media, "Upload video or image"%>
+                          <br>
+                          <%= f.file_field :media %>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <%= f.submit "Upload", class: "btn btn-primary" %>
+                          </div>
+                        <% end %>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                 <% end %>
+                       
+               </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+</br></br>
+
