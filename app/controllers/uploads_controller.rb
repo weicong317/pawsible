@@ -23,10 +23,11 @@ class UploadsController < ApplicationController
   end
 
   def index
- 
     @uploads = Upload.all.reverse_order
-    # challenge = Challenge.find_by(title: filter_params[:challenge]) if filter_params[:challenge].present? 
-    # @uploads = @uploads.where(challenge_id: challenge.id) if filter_params[:challenge].present? 
+    if params[:filter]
+      challenge = Challenge.where(title: filter_params[:challenge]) if filter_params[:challenge].present?
+      @uploads = @uploads.where(challenge_id: challenge) if filter_params[:challenge].present? 
+    end
 
     respond_to do |format|
       format.html {render :index}
