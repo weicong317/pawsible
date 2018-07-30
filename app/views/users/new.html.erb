@@ -4,14 +4,14 @@
 
     <%= form_for @user do |form| %>
       <div class="text-field form-group row">
-        <%= form.label :email, class:"col-sm-2 col-form-label" %>
+        <%= form.label :email, class:"col-sm-1 col-form-label" %>
         <div class="col-sm-6">
           <%= form.text_field :email, type: 'email', class:"form-control" %>
         </div>
       </div>
 
       <div class="password-field form-group row">
-        <%= form.label :password, class:"col-sm-2 col-form-label" %>
+        <%= form.label :password, class:"col-sm-1 col-form-label" %>
         <div class="col-sm-6">
           <%= form.password_field :password, class:"form-control" %>
         </div>
