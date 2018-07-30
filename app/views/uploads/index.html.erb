@@ -1,23 +1,4 @@
-<%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
-  <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
-  <datalist id="dropdown"></datalist>
 
-  <%= f.submit "Search" %>
-<% end %>
-
-<div id="feed-content">
-  <% if @uploads.size > 0 %>
-    <% @uploads.each do |media| %>
-      <% if %w(mp4).include?(media.media.file.extension.downcase) %>
-        <a href="<%= upload_path(media.id) %>">
-          <video controls="controls" preload="none" width="300" src="<%= media.media.url %>"></video>
-        </a>
-      <% elsif %w(jpg jpeg gif png).include?(media.media.file.extension.downcase) %>
-        <%= link_to image_tag(media.media.url.to_s), upload_path(media.id) %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
@@ -45,3 +26,81 @@
     });
   });
 </script>
+
+
+<!-- Filter Bar -->
+
+<%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
+  <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
+  <datalist id="dropdown"></datalist>
+
+  <%= f.submit "Search" %>
+<% end %>
+
+
+
+
+
+
+
+<!-- FEED STYING - GRACE -->
+
+
+<!-- Feed top text area -->
+</br></br>
+<div class="text-center">
+ <h2>Completed Challenges</h1>
+</div></br></br>
+
+
+
+<!-- Setting up the cards -->
+
+<div class="container" >
+<div class="row">
+
+  <% if @uploads.size > 0 %>
+    <% @uploads.each do |video| %>
+      <div class="col-sm-4">
+       <div class="card">
+                     
+          <div class="card-block">
+
+
+<!--  Add media to loop -->          
+
+                <div id="feed-content">
+
+                      <% if !video.media.file.nil? %> 
+                        <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+                          <a href="<%= upload_path(video.id) %>">
+                            <video controls="controls" preload="none" width="300" src="<%= video.media.url %>"></video>
+                          </a>
+                        <% elsif %w(jpg jpeg gif png).include?(video.media.file.extension.downcase) %>
+                          <%= link_to image_tag(video.media.url.to_s), upload_path(video.id) %>
+                        <% end %>
+                      <% end %>
+                </div>
+
+
+<!--  End of media -->  
+
+                <h5 class="card-title"><%= video.challenge.title %></h5>  
+                <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{video.user.dog_name}" %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{video.created_at}" %></h6>
+
+                <button type="button" class="mb-4 btn btn-primary">
+                  View
+                </button>
+
+           </div>
+         </div>
+     
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+</div>
+
+
