@@ -22,9 +22,9 @@
             <div class="row">
               <div class="col-sm-6">
                 <% if !dog.profile_pic.file.nil? %>
-                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img"%>
+                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img img-fluid"%>
                 <% else %>
-                  <%= image_tag "profile_pic.png", class:"d-block" %>
+                  <%= image_tag "profile_pic.png", class:"d-block img-fluid" %>
                 <% end %>
               </div>
               <div class="col-sm-6">
@@ -44,9 +44,9 @@
             <div class="row">
               <div class="col-sm-6">
                 <% if !dog.profile_pic.file.nil? %>
-                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img", alt:"First Slide"%>
+                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img img-fluid", alt:"First Slide"%>
                 <% else %>
-                  <%= image_tag "profile_pic.png", class:"d-block", alt:"First Slide" %>
+                  <%= image_tag "profile_pic.png", class:"d-block img-fluid", alt:"First Slide" %>
                 <% end %>
               </div>
               <div class="col-sm-6">
