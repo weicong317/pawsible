@@ -1,8 +1,10 @@
 Video:
 <% @uploads.each do |video| %>
-  <% if %w(mp4).include?(video.media.file.extension.downcase) %>
-    <a href="<%= upload_path(video.id) %>">
-      <video controls="controls" preload="none" width="300" src="<%= video.media.url %>"></video>
-    </a>
+  <% if !video.media.file.nil? %>
+    <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+      <a href="<%= upload_path(video.id) %>">
+        <video controls="controls" preload="none" width="300" src="<%= video.media.url %>"></video>
+      </a>
+    <% end %>
   <% end %>
 <% end %>
