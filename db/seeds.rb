@@ -28,7 +28,7 @@ end
 
 # Seed Uploads
 
-40.times do 
+15.times do 
   upload = {}
   upload['user_id'] = rand(1..10)  
   upload['challenge_id'] = rand(1..6)  

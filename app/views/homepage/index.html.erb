@@ -84,7 +84,6 @@
           <div class="card">
             <div class="card-body">
               <% if !upload.media.file.nil? %>
-                <%# if is video, show video, if image, show image %>
                 <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
                   <a href="<%= upload_path(upload.id) %>">
                     <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
