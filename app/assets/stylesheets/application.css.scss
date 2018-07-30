@@ -54,11 +54,11 @@
 	background-color: black; 
 }
 
-.carousel-inner {
-	height: 540px;
-}
-
 .carousel-item {
-	height: 540px;
+	height: 380px;
 }
 
+.carousel-img {
+	margin: auto;
+	border-radius: 50%;
+}

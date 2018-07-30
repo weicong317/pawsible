@@ -19,40 +19,46 @@
       <% @top_dog.each_with_index do |dog, index| %>
         <% if index > 0 %>
           <div class="carousel-item">
-			      <% if !dog.profile_pic.file.nil? %>
-              <%= image_tag dog.profile_pic.url.to_s, class:"d-block"%>
-            <% else %>
-				      <%= image_tag "profile_pic.png", class:"d-block" %>
-            <% end %>          
-            <div class="carousel-caption d-none d-md-block">
-              <% if !dog.profile_pic.file.nil? %>
-                <p><%= image_tag dog.profile_pic.url.to_s %></p>                
-              <% else %>
-                <p><%= image_tag "profile_pic.png" %></p>
-              <% end %>  
-              <p><%= image_tag(dog.badge) %></p>
-              <h5><%= dog.dog_name%></h5>
-              <p>Status: <%= dog.status %></p>
-              <p>Ranking: <%= index + 1 %></p>  
-              <p>Onwed By: <%= dog.owner_name %></p> 
+            <div class="row">
+              <div class="col-sm-6">
+                <% if !dog.profile_pic.file.nil? %>
+                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img"%>
+                <% else %>
+                  <%= image_tag "profile_pic.png", class:"d-block" %>
+                <% end %>
+              </div>
+              <div class="col-sm-6">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5><%= dog.dog_name%></h5>
+                  <p>Status: <%= dog.status %></p>
+                  <p>Ranking: <%= index + 1 %></p>  
+                  <p>Onwed By: <%= dog.owner_name %></p> 
 
-              <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                  <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                </div>
+              </div>
             </div>
           </div>
         <% else %>
           <div class="carousel-item active">
-            <% if !dog.profile_pic.file.nil? %>
-              <%= image_tag dog.profile_pic.url.to_s, class:"d-block", alt:"First Slide" %>                
-            <% else %>
-              <%= image_tag "profile_pic.png", class:"d-block", alt:"First Slide" %>
-            <% end %>
-            <div class="carousel-caption d-none d-md-block">
-              <h5><%= dog.dog_name%></h5>
-              <p>Status: <%= dog.status %></p>
-              <p>Ranking: <%= index + 1 %></p>  
-              <p>Onwed By: <%= dog.owner_name %></p> 
+            <div class="row">
+              <div class="col-sm-6">
+                <% if !dog.profile_pic.file.nil? %>
+                  <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img", alt:"First Slide"%>
+                <% else %>
+                  <%= image_tag "profile_pic.png", class:"d-block", alt:"First Slide" %>
+                <% end %>
+              </div>
+              <div class="col-sm-6">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5><%= dog.dog_name%></h5>
+                  <p>Status: <%= dog.status %></p>
+                  <p>Ranking: <%= index + 1 %></p>  
+                  <p>Onwed By: <%= dog.owner_name %></p> 
 
-              <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                  <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
