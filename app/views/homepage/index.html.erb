@@ -83,13 +83,15 @@
         <div class="col-sm-6 col-lg-3">
           <div class="card">
             <div class="card-body">
-              <%# if is video, show video, if image, show image %>
-              <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
-                <a href="<%= upload_path(upload.id) %>">
-                  <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
-                </a>
-              <% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
-                <%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
+              <% if !upload.media.file.nil? %>
+                <%# if is video, show video, if image, show image %>
+                <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
+                  <a href="<%= upload_path(upload.id) %>">
+                    <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+                  </a>
+                <% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
+                  <%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
+                <% end %>
               <% end %>
               <p><%= upload.challenge.title%> </p> 
               <p>Completed By: <%= upload.user.dog_name %></p> 
