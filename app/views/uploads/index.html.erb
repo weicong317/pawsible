@@ -37,7 +37,7 @@
           data.forEach(function(element) {
             if (searchTitleArray.indexOf(element.title) === -1) {
               searchTitleArray.push(element.title);
-              $( "#dropdown" ).append( `<option value=${element.title}>` );
+              $( "#dropdown" ).append( `<option value='${element.title}'>` );
             };
           });
         };
