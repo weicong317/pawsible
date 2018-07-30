@@ -20,20 +20,27 @@ class UploadsController < ApplicationController
 
   def show
     @upload = Upload.find(params[:id])
-    @same_kind = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order
-    @same_kind = @same_kind.where.not(id: params[:id])
-    @same_kind = @same_kind.limit(8)
   end
 
   def index
+ 
+    @uploads = Upload.all.reverse_order
+    # challenge = Challenge.find_by(title: filter_params[:challenge]) if filter_params[:challenge].present? 
+    # @uploads = @uploads.where(challenge_id: challenge.id) if filter_params[:challenge].present? 
+
+    respond_to do |format|
+      format.html {render :index}
+      format.js
+    end
   end
 
-  def index_video
-    @uploads = Upload.all.reverse_order
-  end
-
-  def index_image
-    @uploads = Upload.all.reverse_order
+  def autocomplete
+    @challenge = Challenge.all
+    @challenge = @challenge.starts_with(filter_params[:challenge]) if filter_params[:challenge].present? 
+    
+    respond_to do |format|
+      format.json {render json:@challenge}
+    end
   end
   
   private
@@ -46,5 +53,9 @@ class UploadsController < ApplicationController
 
   def create_params
     params.require(:upload).permit(:media)
-  end  
+  end
+  
+  def filter_params
+    params.require(:filter).permit(:challenge)
+  end
 end

@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   get "/users/:id/profile_pic" => "users#profilePic", as: "profile_pic_upload"
   put "/users/:id/profile_pic" => "users#profilePic_update"
   resources :uploads, only: [:index, :show]
-  get "/uploads_video" => "uploads#index_video"
-  get "/uploads_image" => "uploads#index_image"
   resources :challenges, only: [:index, :new, :create, :edit, :update] do
     resources :uploads, only: [:new, :create]
   end
+  get "/search/autocomplete" => "uploads#autocomplete"
 
   # this will link to a page that contain sign up/sign in by using AJAX
   get "/session_new" => "homepage#session_new"

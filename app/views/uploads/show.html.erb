@@ -21,18 +21,3 @@
 
 	<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
 </div>
-
-<div>
-  <p>suggestion from same challenge</p>
-	<div>
-		<% @same_kind.each do |media| %>
-			<% if %w(mp4).include?(media.media.file.extension.downcase) %>
-      	<a href="<%= upload_path(media.id) %>">
-					<video controls="controls" preload="none" width="300" src="<%= media.media.url %>"></video>
-				</a>
-			<% elsif %w(jpg jpeg gif png).include?(media.media.file.extension.downcase) %>
-      	<%= link_to image_tag(media.media.url.to_s), upload_path(media.id) %>
-			<% end %>
-		<% end %>
-	</div>
-</div>
