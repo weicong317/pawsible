@@ -24,7 +24,7 @@
                 <% if !dog.profile_pic.file.nil? %>
                   <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img img-fluid"%>
                 <% else %>
-                  <%= image_tag "profile_pic.png", class:"d-block img-fluid" %>
+                  <%= image_tag "profile_pic.png", class:"d-block carousel-img img-fluid" %>
                 <% end %>
               </div>
               <div class="col-sm-6">
@@ -34,7 +34,7 @@
                   <p>Ranking: <%= index + 1 %></p>  
                   <p>Onwed By: <%= dog.owner_name %></p> 
 
-                  <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                  <%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %>
                 </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
                 <% if !dog.profile_pic.file.nil? %>
                   <%= image_tag dog.profile_pic.url.to_s, class:"d-block carousel-img img-fluid", alt:"First Slide"%>
                 <% else %>
-                  <%= image_tag "profile_pic.png", class:"d-block img-fluid", alt:"First Slide" %>
+                  <%= image_tag "profile_pic.png", class:"d-block carousel-img img-fluid", alt:"First Slide" %>
                 <% end %>
               </div>
               <div class="col-sm-6">
@@ -56,7 +56,7 @@
                   <p>Ranking: <%= index + 1 %></p>  
                   <p>Onwed By: <%= dog.owner_name %></p> 
 
-                  <%= button_to "View Profile", user_path(dog.id), method: :get %>
+                  <%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %>
                 </div>
               </div>
             </div>
@@ -76,9 +76,9 @@
   </div>
 
   <%# to show the latest 8 feed by dogs and have a button to link to feeds page when > 0 %>
-  <% if @uploads.size > 0 %>
-    <h1>Dog Feeds:</h1>
-    <div class="row my-4">
+  <h1 class="my-4">Dog Feeds:</h1>
+    <% if @uploads.size > 0 %>
+    <div class="row">
       <% @uploads.each do |upload| %>
         <div class="col-sm-6 col-lg-3">
           <div class="card">
@@ -103,32 +103,44 @@
       <% end %>
     </div>
 
-    <%= button_to "View all feed", uploads_path, method: :get %>
+    <%= button_to "View all feed", uploads_path, method: :get, class:"btn btn-primary"%>
   <% end %>  
 
   <%# to show the top 10 dogs in leaderboard way and a button to link to the full leaderboard when > 0 %>
-  <% if @leaderboard.size > 0 %>
-    <h1>Leader Board:</h1>
-
-    <div>
-      <ul>
-        <% @leaderboard.each_with_index do |dog, index| %>
-          <% if !dog.profile_pic.file.nil? %>
-            <p><%= image_tag dog.profile_pic.url.to_s %></p>
-          <% else %>
-            <p><%= image_tag "profile_pic.png" %></p>
+    <h1 class="my-4">Leader Board:</h1>
+    <% if @leaderboard.size > 0 %>
+      <table class="table">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Profile Pic</th>
+              <th scope="col">Badge</th>
+              <th scope="col">Name</th>
+              <th scope="col">Ranking</th>
+              <th scope="col">Points</th>
+              <th scope="col">Owner</th>
+              <th scope="col">View Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @leaderboard.each_with_index do |dog, index| %>
+            <tr>
+              <% if !dog.profile_pic.file.nil? %>
+                <td><%= image_tag dog.profile_pic.url.to_s, class:"thumbnail"%></td>
+              <% else %>
+                <td><%= image_tag "profile_pic.png", class:"thumbnail" %></td>
+              <% end %>
+              <td><%= image_tag(dog.badge)%></td>
+              <td><%= dog.dog_name %></td>
+              <td><%= index + 1 %></td> 
+              <td><%= dog.total_points %></td> 
+              <td><%= dog.owner_name %></td>
+              <td><%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %></td>
+            </tr>
           <% end %>
-          <p><%= image_tag(dog.badge) %></p>
-          <li><%= dog.dog_name %></li>
-          <li>Ranking: <%= index + 1 %></li> 
-          <li>Points: <%= dog.total_points %></li> 
-          <li>Owned By: <%= dog.owner_name %></li>
-          <%= button_to "View Profile", user_path(dog.id), method: :get %>
-        <% end %>
-      </ul>
-    </div>
+        </tbody>
+      </table>
 
-    <%= button_to "View full leader board", leaderboard_path, method: :get %>
+    <%= button_to "View full leader board", leaderboard_path, method: :get, class:"btn btn-primary" %>
   <% end %>
   
 </div>
