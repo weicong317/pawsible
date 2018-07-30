@@ -25,7 +25,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to "Feeds", uploads_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "Challenges", challenges_path, class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "Leaderboards", leaderboard_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "Leaderboard", leaderboard_path, class:"nav-link" %></li>
           <% if signed_in? && current_user.role === "admin" %>
             <li class="nav-item"><%= link_to "Post new challenge", new_challenge_path, class:"nav-link" %></li>
           <% end %>
