@@ -1,4 +1,67 @@
-<%# use ajax to merge this 2 things into 1 page %>
+<div class="container text-center mt-4">
+  <%= image_tag "paw.png", id: "page_icon", class: "my-5" %>
+  <div class="row">
+    <%= button_tag "Sign up", class: "col-4 offset-2 mr-1 btn btn-outline-primary", id: "sign_up" %>
+    <%= button_tag "Sign in", class: "col-4 ml-1 btn btn-outline-primary", id: "sign_in" %>
+  </div>
 
-<%= button_to "Sign in", sign_in_path, method: :get %>
-<%= button_to "Sign up", sign_up_path, method: :get %>
+  <div class="row">
+    <div class="col-8 offset-2 mt-4" id="session_content">
+      <div id="sign_up_content" class="sign-up d-none ml-2">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+
+        <%= form_for User.new do |form| %>
+          <div class="text-field">            
+            <%= form.text_field :email, type: 'email', class: "form-control my-4", placeholder: "Email address" %>
+          </div>
+
+          <div class="password-field">
+            <%= form.password_field :password, class: "form-control my-4", placeholder: "Password" %>
+          </div>
+
+          <div class="submit-field">
+            <%= form.submit "Sign Up", class: "btn btn-lg btn-primary btn-block my-5" %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div id="sign_in_content" class="sign-in ml-2">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <%= form_for :session, url: session_path do |form| %>
+          <div class="text-field">
+            <%= form.text_field :email, type: 'email', class: "form-control my-4", placeholder: "Email address" %>
+          </div>
+
+          <div class="password-field">
+            <%= form.password_field :password, class: "form-control my-4", placeholder: "Password" %>
+          </div>
+
+          <div class="submit-field">
+            <%= form.submit class: "btn btn-lg btn-primary btn-block my-4" %>
+          </div>
+
+          <div class="other-links">
+            <%= link_to t(".forgot_password"), new_password_path, id: "forgot_password" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( "#sign_up" ).click(function(event) {
+    event.preventDefault();
+    $( "#sign_in_content" ).addClass( "d-none" );
+    $( "#sign_up_content" ).removeClass( "d-none" );    
+  });
+
+  $( "#sign_in" ).click(function(event) {
+    event.preventDefault();
+    $( "#sign_up_content" ).addClass( "d-none" );
+    $( "#sign_in_content" ).removeClass( "d-none" );    
+  });
+</script>
