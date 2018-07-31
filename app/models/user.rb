@@ -13,6 +13,26 @@ class User < ApplicationRecord
   enum status: [:"underdog", :"gooddog", :"cleverdog", :"hotdog", :"topdog"]
   enum role: [:admin]
 
+  def completeChallenge?(challengeId)
+    self.uploads.each do |row|
+      if row.challenge_id === challengeId
+        return true
+      end
+    end
+    return false
+  end
+
+  def completeAllChallenge?(challengeId)
+    temp = []
+    self.uploads.each do |row|
+      temp << row.challenge_id
+    end
+    if temp.include?(challengeId)
+      return true
+    end
+    return false
+  end
+
   def badge
     case total_points
     when 0..20
