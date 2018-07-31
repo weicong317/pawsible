@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   end
   get "/search/autocomplete" => "uploads#autocomplete"
 
-  # this will link to a page that contain sign up/sign in by using AJAX
-  get "/session_new" => "homepage#session_new"
-
   # from clearance
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -22,9 +19,8 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+  get "/sign_in" => "homepage#session_new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
-  get "/sign_up" => "clearance/users#new", as: "sign_up"
   # end
   
   root "homepage#index"
