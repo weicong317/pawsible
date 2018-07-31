@@ -86,7 +86,7 @@
               <% if !upload.media.file.nil? %>
                 <% if %w(mp4).include?(upload.media.file.extension.downcase) %>
                   <a href="<%= upload_path(upload.id) %>">
-                    <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>"></video>
+                    <video class="card-img-top" controls="controls" preload="none" width="300" src="<%= upload.media.url %>" poster="<%= upload.media.thumb.url %>"></video>
                   </a>
                 <% elsif %w(jpg jpeg gif png).include?(upload.media.file.extension.downcase) %>
                   <%= link_to image_tag(upload.media.url.to_s), upload_path(upload.id) %>
