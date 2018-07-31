@@ -1,21 +1,14 @@
-
-
-
 <!-- SPONSOR IMAGE -->
 
 <div class="text-center">
  <img src="http://via.placeholder.com/1500x250" class="img-fluid max-width: 100%;" alt="sponsorimage">
 </div></br></br>
 
-
-
 <!-- text Area -->
 
 <div class="text-center">
  <h2>This Week’s Challenges</h1>
 </div></br>
-
-
 
 <!-- CARDS / 3 PER ROW / HEAVE LEFT THE IMAGE IN CASE WANTED TO ADD? -->
 
@@ -25,7 +18,6 @@
       <% @challenges.each do |challenge| %>
       
 
-
       <!-- Here we need another if statement, that either removes, or changes how the challenge looks if it has already been completed?  -->
          <div class="col-sm-4 border card border-primary mb-3" style="max-width: 22rem; margin: 6px">
            <div class="card">
@@ -34,8 +26,15 @@
                  <h5 class="card-title"><%= challenge.title %></h5>  
                  <h6 class="card-subtitle mb-2 text-muted"><%= challenge.description %></h6>
                  <p class="card-subtitle mb-2 text-muted"><%= "Win #{challenge.points} points" %></p>
-                 <% if signed_in? %>
-
+                  <% temp = [] %>
+                  <% current_user.uploads.each do |row| %>
+                    <% temp << row.challenge_id %>
+                  <% end %>
+                  <% if signed_in? && temp.include?(challenge.id) %>
+                    <button type="button" class="mb-4 btn btn-primary" data-toggle="modal" data-target="#challenge-<%= challenge.id %>" disabled>
+                      Completed
+                    </button>
+                  <% elsif signed_in? %>
                     <button type="button" class="mb-4 btn btn-primary" data-toggle="modal" data-target="#challenge-<%= challenge.id %>">
                       Complete Challenge
                     </button>
@@ -50,8 +49,6 @@
                             </button>
                           </div>
                           <div class="modal-body">
-
-
 
                     <!-- This is the content of the modal, to complete challenge -->
 
@@ -81,4 +78,3 @@
 </div>
 
 </br></br>
-
