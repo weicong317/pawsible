@@ -37,7 +37,7 @@
             <li class="nav-item"><%= button_to 'Sign out', sign_out_path, method: :delete, class:"btn btn-primary" %></li>
           <% else %>
             <%# this will link to a page that contain sign up/sign in by using AJAX %>
-            <li class="nav-item"><%= link_to "Sign in/Sign up", session_new_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "Sign in/Sign up", sign_in_path, class:"nav-link" %></li>
           <% end %>
         </ul>
       </div>
