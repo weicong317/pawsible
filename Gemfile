@@ -47,6 +47,9 @@ gem "letter_opener", :group => :development
 # To perform background job
 gem 'sidekiq'
 
+# To create a thumbnail for video when uploading
+gem 'carrierwave-video-thumbnailer'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

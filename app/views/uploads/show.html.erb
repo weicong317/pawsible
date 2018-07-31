@@ -4,7 +4,7 @@
 		<div id="show-upload-dimensions">
 
 		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
-		  	<video controls="controls" preload="none" width="800" src="<%= @upload.media.url %>"></video>
+		  	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>" poster="<%= @upload.media.thumb.url %>"></video>
 			<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
 		    <%= image_tag @upload.media.url.to_s %>
 		    <% else %>
