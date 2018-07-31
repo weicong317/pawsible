@@ -101,36 +101,32 @@
         </div>
       <% end %>
     </div>
-
+    
     <%= button_to "View all feed", uploads_path, method: :get, class:"btn btn-primary"%>
   <% end %>  
 
   <%# to show the top 10 dogs in leaderboard way and a button to link to the full leaderboard when > 0 %>
-    <h1 class="my-4">Leaderboard:</h1>
+    <div align="center">
+      <h1 class="my-4">Leaderboard</h1>
+    </div>
     <% if @leaderboard.size > 0 %>
       <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-dark" align="center">
             <tr>
-              <th scope="col">Profile Pic</th>
-              <th scope="col">Badge</th>
-              <th scope="col">Name</th>
               <th scope="col">Ranking</th>
+              <th scope="col">Name</th>
+              <th scope="col">Badge</th>
               <th scope="col">Points</th>
               <th scope="col">Owner</th>
               <th scope="col">View Profile</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
           <% @leaderboard.each_with_index do |dog, index| %>
             <tr>
-              <% if !dog.profile_pic.file.nil? %>
-                <td><%= image_tag dog.profile_pic.url.to_s, class:"thumbnail"%></td>
-              <% else %>
-                <td><%= image_tag "profile_pic.png", class:"thumbnail" %></td>
-              <% end %>
-              <td><%= image_tag(dog.badge)%></td>
-              <td><%= dog.dog_name %></td>
               <td><%= index + 1 %></td> 
+              <td><%= dog.dog_name %></td>
+              <td><%= image_tag(dog.badge, class:"mini-badge")%></td>
               <td><%= dog.total_points %></td> 
               <td><%= dog.owner_name %></td>
               <td><%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %></td>
@@ -138,8 +134,8 @@
           <% end %>
         </tbody>
       </table>
-
-    <%= button_to "View Full Leaderboard", leaderboard_path, method: :get, class:"btn btn-primary" %>
+      <div class="my-4" align="center">
+        <%= button_to "View Full Leaderboard", leaderboard_path, method: :get, class:"btn btn-primary"%>
+      </div>
   <% end %>
-  
 </div>
