@@ -30,16 +30,16 @@
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
         <%= form_for :session, url: session_path do |form| %>
-          <div class="text-field">
+          <div class="text-field shadow">
             <%= form.text_field :email, type: 'email', class: "form-control my-4", placeholder: "Email address" %>
           </div>
 
-          <div class="password-field">
+          <div class="password-field shadow">
             <%= form.password_field :password, class: "form-control my-4", placeholder: "Password" %>
           </div>
 
           <div class="submit-field">
-            <%= form.submit class: "btn btn-lg btn-primary btn-block my-4" %>
+            <%= form.submit "Sign In", class: "btn btn-lg btn-primary btn-block my-4" %>
           </div>
 
           <div class="other-links">
