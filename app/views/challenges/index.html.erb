@@ -17,11 +17,10 @@
        
       <% @challenges.each do |challenge| %>
       
+
       <!-- Here we need another if statement, that either removes, or changes how the challenge looks if it has already been completed?  -->
-       
-         <div class="col-sm-4">
+         <div class="col-sm-4 border card border-primary mb-3" style="max-width: 22rem; margin: 6px">
            <div class="card">
-               <img class="card-img-top img-fluid" src="http://placehold.it/500x280">
                      
                <div class="card-block">
                  <h5 class="card-title"><%= challenge.title %></h5>  
@@ -50,7 +49,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                 
+
                     <!-- This is the content of the modal, to complete challenge -->
 
                         <%= form_with scope: :upload, url: challenge_uploads_path(challenge.id), local: true do |f| %>
