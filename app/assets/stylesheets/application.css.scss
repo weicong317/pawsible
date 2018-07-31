@@ -19,6 +19,7 @@
 .profile-pic {
 	width: 250px;
 	height: 250px;
+	border: 5px solid black;
 	border-radius: 50%;
 }
 
@@ -75,13 +76,17 @@
 	margin-right: 10px;
 }
 
-
 #feed-content img {
 	width: 300px;
 }
-
 
 #show-upload-dimensions img {
 	width: 800px;
 }
 
+.profile-badge {
+	width: 120px;
+	height: 120px;
+	margin-top: -180px;
+	margin-left: 160px;
+}

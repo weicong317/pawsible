@@ -29,15 +29,6 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
-  def profilePic
-    @user = User.find(params[:id])
-  end
-
-  def profilePic_update
-    User.find(params[:id]).update(profilePic_params)
-    redirect_to user_path(params[:id])
-  end
-
   def leaderboard
     @leaderboard = User.all.order(:total_points).reverse_order.page params[:page]
   end
@@ -53,11 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update_params
-    params.require(:profile).permit(:dog_name, :owner_name, :breed, :bio).reject{|_, v| v.blank?}
-  end
-
-  def profilePic_params
-    params.require(:profile_pic).permit(:profile_pic)
+    params.require(:profile).permit(:dog_name, :owner_name, :breed, :bio, :profile_pic).reject{|_, v| v.blank?}
   end
 
   def require_login

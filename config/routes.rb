@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:create, :show, :edit, :update, :destroy]
   get "/leaderboard" => "users#leaderboard", as: "leaderboard"
-  get "/users/:id/profile_pic" => "users#profilePic", as: "profile_pic_upload"
-  put "/users/:id/profile_pic" => "users#profilePic_update"
   resources :uploads, only: [:index, :show]
   resources :challenges, only: [:index, :new, :create, :edit, :update] do
     resources :uploads, only: [:new, :create]
