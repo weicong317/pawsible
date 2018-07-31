@@ -7,13 +7,6 @@
 				<%= image_tag "profile_pic.png", class:"profile-pic mt-4 ml-4" %>
 			<% end %>
 			<p><%= image_tag(@user.badge) %></p>
-			<% if signed_in? && current_user.id = @user.id %>
-				<% if !@user.profile_pic.file.nil? %>			
-					<%= button_to "Change Profile Picture", profile_pic_upload_path(@user.id), method: :get, class:"btn btn-primary"%>
-				<% else %>
-					<%= button_to "Upload Profile Picture", profile_pic_upload_path(@user.id), method: :get, class:"btn btn-primary"%>
-				<% end %>
-			<% end %>
 		</div>
 		<div class="col-sm-12 col-lg-6">
 			<h2 class="my-4"><%= @user.dog_name %></h2>
