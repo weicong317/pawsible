@@ -1,10 +1,10 @@
 
 </br></br>
-<div class ="container">
-		<div>
+<div class="container">
+		<div id="show-upload-dimensions">
 
 		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
-		  	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>"></video>
+		  	<video controls="controls" preload="none" width="800" src="<%= @upload.media.url %>"></video>
 			<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
 		    <%= image_tag @upload.media.url.to_s %>
 		    <% else %>
@@ -16,7 +16,7 @@
 				<p>Owner: <%= @upload.user.owner_name %></p>
 				<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
 
-				<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
+				<%= button_to "View Profile", user_path(@upload.user.id), method: :get, class: 'mb-4 btn btn-primary' %>
 		      </div>
 		</div>
     </div>
