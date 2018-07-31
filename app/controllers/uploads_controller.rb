@@ -48,7 +48,7 @@ class UploadsController < ApplicationController
   def require_login
     unless signed_in?
       flash[:error] = "You must be logged in to access this section"
-      redirect_to sign_in_path
+      redirect_to session_new_path
     end
   end
 

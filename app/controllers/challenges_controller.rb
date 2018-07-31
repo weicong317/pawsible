@@ -39,7 +39,7 @@ class ChallengesController < ApplicationController
   def require_admin
     unless signed_in? && current_user.role === "admin"
       flash[:error] = "You must be ad admin and logged in to access this section"
-      redirect_to sign_in_path
+      redirect_to session_new_path
     end
   end
 end
