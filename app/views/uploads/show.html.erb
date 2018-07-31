@@ -1,6 +1,6 @@
 
 </br></br>
-<div class="container">
+<div class="container d-flex justify-content-center">
 		<div id="show-upload-dimensions">
 
 		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
@@ -11,10 +11,10 @@
 			<% end %>
 
 			  <div class="text-left">
-				<p>Challenge: <%= @upload.challenge.title %></p>
-				<p>Completed By: <%= @upload.user.dog_name %></p>
-				<p>Owner: <%= @upload.user.owner_name %></p>
-				<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
+				<h3><%= @upload.challenge.title %></h3>
+				<p style="line-height:10px;">Completed By: <%= @upload.user.dog_name %></p>
+				<p style="line-height:3px;">Owner: <%= @upload.user.owner_name %></p>
+				<p style="line-height:3px;">Sponsored By: <%= @upload.challenge.sponsor %></p>
 
 				<%= button_to "View Profile", user_path(@upload.user.id), method: :get, class: 'mb-4 btn btn-primary' %>
 		      </div>

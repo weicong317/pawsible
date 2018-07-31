@@ -28,18 +28,6 @@
 </script>
 
 
-<!-- Filter Bar -->
-
-<%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
-  <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
-  <datalist id="dropdown"></datalist>
-
-  <%= f.submit "Search" %>
-<% end %>
-
-
-
-
 
 
 
@@ -50,21 +38,38 @@
 </br></br>
 <div class="text-center">
  <h2>Completed Challenges</h1>
+<h4>The latest achievement from our dog community</h4>
 </div></br></br>
+
+
+
+<!-- Filter Bar -->
 
 
 
 <!-- Setting up the cards -->
 
 <div class="container" >
+
+<div id="search-filter">
+  <%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
+    <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
+    <datalist id="dropdown"></datalist>
+    <%= f.submit "Search", class: "btn-secondary" %>
+  <% end %>
+
+</div>
+
+
+
+
+  <div id="feed-content">
 <div class="row">
 
-<div id="feed-content">
   <% if @uploads.size > 0 %>
     <% @uploads.each do |video| %>
       <div class="col-sm-4">
-       <div class="card">
-                     
+       <div class="card">            
           <div class="card-block">
 
 
@@ -82,12 +87,11 @@
                       <% end %>
 
 
-
 <!--  End of media -->  
 
                 <h5 class="card-title"><%= video.challenge.title %></h5>  
                 <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{video.user.dog_name}" %></h6>
-                <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{video.created_at}" %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{video.created_at.time.strftime("%d/%m/%Y")}" %></h6>
 
                 <%= button_to "view", upload_path(video.id), method: :get, class: 'mb-4 btn btn-primary' %>
            </div>
