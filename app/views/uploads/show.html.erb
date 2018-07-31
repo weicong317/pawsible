@@ -1,25 +1,23 @@
-<div>
-  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
-  	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>"></video>
-	<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
-    <%= image_tag @upload.media.url.to_s %>
-    <% else %>
-	<% end %>
 
-</div>
+</br></br>
+<div class ="container">
+		<div>
 
-<div>
-	<p>Challenge: <%= @upload.challenge.title %></p>
-	<p>Completed By: <%= @upload.user.dog_name %></p>
-	<p>Owner: <%= @upload.user.owner_name %></p>
-	<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
-	<% if !@upload.user.profile_pic.file.nil? %>
-		<li><%= image_tag @upload.user.profile_pic.url.to_s %></li>
-	<% else %>
-		<li><%= image_tag "profile_pic.png" %></li>
-	<% end %>   
-  <li><%= image_tag(@upload.user.badge) %></li>
+		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
+		  	<video controls="controls" preload="none" width="300" src="<%= @upload.media.url %>"></video>
+			<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
+		    <%= image_tag @upload.media.url.to_s %>
+		    <% else %>
+			<% end %>
 
+			  <div class="text-left">
+				<p>Challenge: <%= @upload.challenge.title %></p>
+				<p>Completed By: <%= @upload.user.dog_name %></p>
+				<p>Owner: <%= @upload.user.owner_name %></p>
+				<p>Sponsored By: <%= @upload.challenge.sponsor %></p>
 
-	<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
+				<%= button_to "View Profile", user_path(@upload.user.id), method: :get %>
+		      </div>
+		</div>
+    </div>
 </div>
