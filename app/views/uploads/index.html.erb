@@ -59,6 +59,7 @@
 <div class="container" >
 <div class="row">
 
+<div id="feed-content">
   <% if @uploads.size > 0 %>
     <% @uploads.each do |video| %>
       <div class="col-sm-4">
@@ -69,9 +70,8 @@
 
 <!--  Add media to loop -->          
 
-                <div id="feed-content">
 
-                      <% if !video.media.file.nil? %> 
+                      <% if !video.media.file.nil? %>
                         <% if %w(mp4).include?(video.media.file.extension.downcase) %>
                           <a href="<%= upload_path(video.id) %>">
                             <video controls="controls" preload="none" width="300" src="<%= video.media.url %>" poster="<%= video.media.thumb.url %>"></video>
@@ -80,7 +80,7 @@
                           <%= link_to image_tag(video.media.url.to_s), upload_path(video.id) %>
                         <% end %>
                       <% end %>
-                </div>
+
 
 
 <!--  End of media -->  
@@ -90,13 +90,13 @@
                 <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{video.created_at}" %></h6>
 
                 <%= button_to "view", upload_path(video.id), method: :get, class: 'mb-4 btn btn-primary' %>
-
            </div>
          </div>
      
       </div>
     <% end %>
   <% end %>
+</div>
 
 </div>
 </div>

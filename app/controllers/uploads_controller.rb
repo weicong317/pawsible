@@ -28,7 +28,6 @@ class UploadsController < ApplicationController
       challenge = Challenge.where(title: filter_params[:challenge]) if filter_params[:challenge].present?
       @uploads = @uploads.where(challenge_id: challenge) if filter_params[:challenge].present? 
     end
-
     respond_to do |format|
       format.html {render :index}
       format.js
