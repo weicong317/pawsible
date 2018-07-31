@@ -1,3 +1,16 @@
 // Place all the styles related to the homepage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// for session_new.html.erb
+#session_content {
+  font-size: 25px;
+}
+#page_icon {
+  width: 72px;
+  height: 72px;
+}
+#forgot_password {
+  font-size: 16px;
+}
+//  end

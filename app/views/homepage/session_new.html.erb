@@ -1,25 +1,8 @@
-<style>
-  #sign_up, #sign_in {
-    border: 1px solid black;
-    font-size: 25px;
-  }
-  #session_content {
-    font-size: 25px;
-  }
-  #page_icon {
-    width: 72px;
-    height: 72px;
-  }
-  #forgot_password {
-    font-size: 16px;
-  }
-</style>
-
 <div class="container text-center mt-4">
   <%= image_tag "paw.png", id: "page_icon", class: "my-5" %>
   <div class="row">
-    <%= link_to "Sign up", sign_up_path, class: "col-4 offset-2 mr-1", id: "sign_up" %>
-    <%= link_to "Sign in", sign_in_path, class: "col-4 ml-1", id: "sign_in" %>
+    <%= button_tag "Sign up", class: "col-4 offset-2 mr-1 btn btn-outline-primary", id: "sign_up" %>
+    <%= button_tag "Sign in", class: "col-4 ml-1 btn btn-outline-primary", id: "sign_in" %>
   </div>
 
   <div class="row">
