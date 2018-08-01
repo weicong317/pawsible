@@ -1,35 +1,40 @@
 <div class="container">
-  <h1 class="my-4">Leaderboard:</h1>
-    <table class="table">
-      <thead class="thead-dark">
-          <tr>
-            <th scope="col">Profile Pic</th>
-            <th scope="col">Badge</th>
-            <th scope="col">Name</th>
-            <th scope="col">Ranking</th>
-            <th scope="col">Points</th>
-            <th scope="col">Owner</th>
-            <th scope="col">View Profile</th>
-          </tr>
-      </thead>
-      <tbody>
-        <% @leaderboard.each_with_index do |dog, index| %>
-          <tr>
-            <% if !dog.profile_pic.file.nil? %>
-              <td><%= image_tag dog.profile_pic.url.to_s, class:"thumbnail" %></td>
-            <% else %>
-              <td><%= image_tag "profile_pic.png", class:"thumbnail" %></td>
-            <% end %>   
-            <td><%= image_tag(dog.badge) %></td>
-            <td><%= dog.dog_name %></td>
-            <td>Ranking: <%= index + 1 %></td> 
-            <td>Points: <%= dog.total_points %></td> 
-            <td>Owned By: <%= dog.owner_name %></td>
-            <td><%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <div align="center">
+    <h1 class="my-5">Leaderboard</h1>
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark" align="center">
+        <tr>
+          <th scope="col">Ranking</th>
+          <th scope="col">Profile Pic</th>
+          <th scope="col">Badge</th>
+          <th scope="col">Name</th>
+          <th scope="col">Points</th>
+          <th scope="col">Owner</th>
+          <th scope="col">View Profile</th>
+        </tr>
+    </thead>
+    <tbody align="center">
+      <% @leaderboard.each_with_index do |dog, index| %>
+        <tr>
+          <td><%= index + 1 %></td> 
+          <% if !dog.profile_pic.file.nil? %>
+            <td><%= image_tag dog.profile_pic.url.to_s, class:"thumbnail circular" %></td>
+          <% else %>
+            <td><%= image_tag "profile_pic.png", class:"thumbnail circular" %></td>
+          <% end %>   
+          <td><%= image_tag(dog.badge, class:"thumbnail") %></td>
+          <td><%= dog.dog_name %></td>
+          <td><%= dog.total_points %></td> 
+          <td><%= dog.owner_name %></td>
+          <td><%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
 <%= paginate @leaderboard %>
 
