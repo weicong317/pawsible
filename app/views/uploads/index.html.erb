@@ -1,5 +1,3 @@
-
-
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
     let searchTitleArray = [];
@@ -28,91 +26,59 @@
 </script>
 
 
-
-
-
-<!-- FEED STYING - GRACE -->
-
-
-<!-- Feed top text area -->
-</br></br>
-<div class="text-center">
- <h2>Completed Challenges</h1>
-<h4>The latest achievement from our dog community</h4>
-</div></br></br>
-
-
-
-<!-- Filter Bar -->
-
-
-
-<!-- Setting up the cards -->
-
 <div class="container" >
 
-<div id="search-filter">
-  <%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
-    <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown" %>
-    <datalist id="dropdown"></datalist>
-    <%= f.submit "Search", class: "btn-secondary" %>
-  <% end %>
+  <div class="my-5" align="center">
+   <h1>Completed Challenges</h1>
+    <h4>The latest achievement from our dog community</h4>
+  </div>
 
-</div>
-
-
-
+  <div class="my-4" id="search-filter">
+    <%= form_with scope: :filter, url: uploads_path, method: :get, remote: true do |f| %>
+      <div class="text-field form-group row">
+        <div class="col-sm-4">
+          <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown", class:"form-control shadow" %>
+        </div>
+        <datalist id="dropdown"></datalist>
+        <%= f.submit "Search", class:"btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
 
   <div id="feed-content">
-<div class="row">
+    <div class="row">
 
-  <% if @uploads.size > 0 %>
-    <% @uploads.each do |video| %>
-      <div class="col-sm-4">
-       <div class="card">            
-          <div class="card-block">
+      <% if @uploads.size > 0 %>
+        <% @uploads.each do |video| %>
+          <div class="col-sm-4">
+            <div class="card">            
+              <div class="card-block">
 
-
-<!--  Add media to loop -->          
-
-
-                      <% if !video.media.file.nil? %>
-                        <% if %w(mp4).include?(video.media.file.extension.downcase) %>
-                          <a href="<%= upload_path(video.id) %>">
-                            <video controls="controls" preload="none" width="300" src="<%= video.media.url %>" poster="<%= video.media.thumb.url %>"></video>
-                          </a>
-                        <% elsif %w(jpg jpeg gif png).include?(video.media.file.extension.downcase) %>
-                          <%= link_to image_tag(video.media.url.to_s), upload_path(video.id) %>
-                        <% end %>
-                      <% end %>
-
-
-<!--  End of media -->  
+                <% if !video.media.file.nil? %>
+                  <% if %w(mp4).include?(video.media.file.extension.downcase) %>
+                    <a href="<%= upload_path(video.id) %>" class="card-img-top">
+                      <video controls="controls" preload="none" width="300" src="<%= video.media.url %>" poster="<%= video.media.thumb.url %>"></video>
+                    </a>
+                  <% elsif %w(jpg jpeg gif png).include?(video.media.file.extension.downcase) %>
+                    <%= link_to image_tag(video.media.url.to_s, class:"card-img-top"), upload_path(video.id) %>
+                  <% end %>
+                <% end %>
 
                 <h5 class="card-title"><%= video.challenge.title %></h5>  
                 <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{video.user.dog_name}" %></h6>
                 <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{video.created_at.time.strftime("%d/%m/%Y")}" %></h6>
 
-                <%= button_to "view", upload_path(video.id), method: :get, class: 'mb-4 btn btn-primary' %>
-           </div>
-         </div>
-     
-      </div>
-    <% end %>
-  <% end %>
-</div>
+                <%= button_to "View", upload_path(video.id), method: :get, class: 'mb-4 btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
-<!--  Pagination -->  
+    <%= will_paginate @uploads, class:"apple_pagination" %>
 
-<div class="align-items-center justify-content-center" >
-</div></br><%= will_paginate @uploads %></p>
-</div>
+  </div>
 
 </div>
-</div>
-
-
-<!--  Pagination -->  
-
-
 

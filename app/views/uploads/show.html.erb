@@ -1,6 +1,5 @@
-
-</br></br>
-<div class="container d-flex justify-content-center">
+<div class="container my-5">
+	<div class="d-flex justify-content-center">
 		<div id="show-upload-dimensions">
 
 		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
@@ -8,7 +7,7 @@
 			<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
 		    <%= image_tag @upload.media.url.to_s%>
 			<% end %>
-        </div>
+	    </div>
 			  
 
 	    <div class="text-left" id="show-page-text">
@@ -21,37 +20,34 @@
 		      
 
 		</div>
+	</div>
 
-
-</div>
-<%# suggetion part by Leong %>
-<div class="container mt-5">
-	<div>
-		<% if @suggestion.size > 0 %>
-			<h4>Other feed you may like</h4>
-			<div class="row">
-				<% @suggestion.each do |row| %>
-					<div class="col-sm-4">
-						<div class="card">            
-							<div class="card-block">
-								<% if %w(mp4).include?(row.media.file.extension.downcase) %>
-									<a href="<%= upload_path(row.id) %>">
-										<video controls="controls" preload="none" width="100%" src="<%= row.media.url %>" poster="<%= row.media.thumb.url %>"></video>
-									</a>
-								<% elsif %w(jpg jpeg gif png).include?(row.media.file.extension.downcase) %>
-									<%= link_to image_tag(row.media.url.to_s, class: 'w-100'), upload_path(row.id) %>
-								<% end %>
-                <h5 class="card-title"><%= row.challenge.title %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{row.user.dog_name}" %></h6>
-                <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{row.created_at.time.strftime("%d/%m/%Y")}" %></h6>
-                <%= button_to "view", upload_path(row.id), method: :get, class: 'mb-4 btn btn-primary' %>
+	<div class="mt-5">
+		<div>
+			<% if @suggestion.size > 0 %>
+				<h4 class="my-4">Other feeds you may like:</h4>
+				<div class="row">
+					<% @suggestion.each do |row| %>
+						<div class="col-sm-4">
+							<div class="card">            
+								<div class="card-block">
+									<% if %w(mp4).include?(row.media.file.extension.downcase) %>
+										<a href="<%= upload_path(row.id) %>" class="card-img-top">
+											<video controls="controls" preload="none" width="100%" src="<%= row.media.url %>" poster="<%= row.media.thumb.url %>"></video>
+										</a>
+									<% elsif %w(jpg jpeg gif png).include?(row.media.file.extension.downcase) %>
+										<%= link_to image_tag(row.media.url.to_s, class:"card-img-top"), upload_path(row.id) %>
+									<% end %>
+					                <h5 class="card-title"><%= row.challenge.title %></h5>
+					                <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{row.user.dog_name}" %></h6>
+					                <h6 class="card-subtitle mb-2 text-muted"><%="Posted On: #{row.created_at.time.strftime("%d/%m/%Y")}" %></h6>
+					                <%= button_to "View", upload_path(row.id), method: :get, class: 'mb-4 btn btn-primary' %>
+								</div>
 							</div>
 						</div>
-					</div>
-				<% end %>
-			</div>
-		<% end %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>
-<%# end %>
-</br></br></br></br></br>
