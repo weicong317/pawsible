@@ -20,6 +20,14 @@ class UploadsController < ApplicationController
 
   def show
     @upload = Upload.find(params[:id])
+    @suggestion = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order
+    @suggestion = @suggestion.where.not(id: @upload)
+    @suggestion = @suggestion.limit(8)
+    if @suggestion.size === 0
+      @suggestion = Upload.all.order(:created_at).reverse_order
+      @suggestion = @suggestion.where.not(id: @upload)
+      @suggestion = @suggestion.limit(8)
+    end
   end
 
   def index
