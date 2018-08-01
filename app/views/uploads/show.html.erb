@@ -6,7 +6,7 @@
 		  <% if %w(mp4).include?(@upload.media.file.extension.downcase) %>
 		  	<video controls="controls" preload="none" width="800" src="<%= @upload.media.url %>" poster="<%= @upload.media.thumb.url %>"></video>
 			<% elsif %w(jpg jpeg gif png).include?(@upload.media.file.extension.downcase) %>
-		    <%= image_tag @upload.media.url.to_s %>
+		    <%= image_tag @upload.media.url.to_s%>
 			<% end %>
         </div>
 			  
@@ -25,7 +25,7 @@
 
 </div>
 <%# suggetion part by Leong %>
-<div class="container d-flex justify-content-center mt-5">
+<div class="container mt-5">
 	<div>
 		<% if @suggestion.size > 0 %>
 			<h4>Other feed you may like</h4>
@@ -36,10 +36,10 @@
 							<div class="card-block">
 								<% if %w(mp4).include?(row.media.file.extension.downcase) %>
 									<a href="<%= upload_path(row.id) %>">
-										<video controls="controls" preload="none" width="300" src="<%= row.media.url %>" poster="<%= row.media.thumb.url %>"></video>
+										<video controls="controls" preload="none" width="100%" src="<%= row.media.url %>" poster="<%= row.media.thumb.url %>"></video>
 									</a>
 								<% elsif %w(jpg jpeg gif png).include?(row.media.file.extension.downcase) %>
-									<%= link_to image_tag(row.media.url.to_s), upload_path(row.id) %>
+									<%= link_to image_tag(row.media.url.to_s, class: 'w-100'), upload_path(row.id) %>
 								<% end %>
                 <h5 class="card-title"><%= row.challenge.title %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%="Completed By: #{row.user.dog_name}" %></h6>

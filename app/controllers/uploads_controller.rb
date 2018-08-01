@@ -22,11 +22,11 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
     @suggestion = Upload.where(challenge_id: @upload.challenge_id).order(:created_at).reverse_order
     @suggestion = @suggestion.where.not(id: @upload)
-    @suggestion = @suggestion.limit(8)
+    @suggestion = @suggestion.limit(6)
     if @suggestion.size === 0
       @suggestion = Upload.all.order(:created_at).reverse_order
       @suggestion = @suggestion.where.not(id: @upload)
-      @suggestion = @suggestion.limit(8)
+      @suggestion = @suggestion.limit(6)
     end
   end
 
