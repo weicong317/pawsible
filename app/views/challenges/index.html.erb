@@ -51,17 +51,17 @@
             <hr>
             <p class="card-text"><%= "#{challenge.points} points" %></p>
           </div>
-          <div class="card-footer">
+
             <% if signed_in? %>
               <% if current_user.completeChallenge?(challenge.id) %>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary" id="complete_button" data-toggle="modal" data-target="#challenge-<%= challenge.id %>" disabled>
+                  <button type="button" class="btn btn-primary btn-block" id="complete_button" data-toggle="modal" data-target="#challenge-<%= challenge.id %>" disabled>
                     Completed Challenge
                   </button>
                 </div>
               <% else %>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary" id="complete_button" data-toggle="modal" data-target="#challenge-<%= challenge.id %>">
+                  <button type="button" class="btn btn-primary btn-block" id="complete_button" data-toggle="modal" data-target="#challenge-<%= challenge.id %>">
                     Complete Challenge
                   </button>
                 </div>
@@ -94,7 +94,7 @@
                 <%= button_to "Sign in to post", sign_in_path, method: :get, class: "btn btn-primary" %>
               </div>
             <% end %>
-          </div>
+
         </div>
       </div>
     <% end %>
