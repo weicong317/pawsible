@@ -30,13 +30,13 @@ class User < ApplicationRecord
 
   def badge
     case total_points
-    when 0..20
+    when 0..100
       "004-underdog.png"
-    when 21..40
+    when 101..200
       "003-gooddog.png"
-    when 41..60
+    when 201..300
       "002-cleverdog.png"
-    when 61..80
+    when 301..400
       "001-hotdog.png"
     else
       "005-topdog.png"
