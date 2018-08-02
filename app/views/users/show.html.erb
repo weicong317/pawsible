@@ -24,14 +24,14 @@
 							My breed is <%= @user.breed %>.
 						<% end %>
 						<% if !@user.owner_name.nil? %>
-					 		I have a good parent who named as <%= @user.owner_name %>.
+					 		My parent is <%= @user.owner_name %>.
 						<% end %>	 
 					</p>
 					<% if !@user.bio.nil? %>
 						<h3><u>My biography</u></h3>
 						<p><%= @user.bio %></p>
 					<% end %>
-					<p>Total points I have the challenges is <strong><%= @user.total_points %></strong></p>
+					<p>Total points I have for the challenges: <strong><%= @user.total_points %></strong></p>
 
 					<%# button to edit profile %>
 					<% if signed_in? && current_user.id = @user.id %>
