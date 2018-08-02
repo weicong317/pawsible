@@ -2,7 +2,7 @@
   <div style="width: 80vw; margin: auto;">
 
     <%# Page Heading %>
-    <h1 class="my-4">Completed Challenges
+    <h1 class="my-5">Completed Challenges
       <p><small>The latest achievement from our dog community</small></p> 
     </h1>
     <%# end %>
@@ -13,7 +13,7 @@
         <%= f.search_field :challenge, placeholder: "Challenge Name", list: "dropdown", class: "form-control" %>
         <datalist id="dropdown"></datalist>
         <div class="input-group-append">
-          <%= f.submit "Search", class: "btn btn-secondary" %>
+          <%= f.submit "Search", class: "btn btn-dark" %>
         </div>
       </div>
     <% end %>

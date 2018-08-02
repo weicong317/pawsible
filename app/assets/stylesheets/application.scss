@@ -14,11 +14,19 @@
  *= require_self
  */
  
+$theme-colors: (
+  "primary": #ccbd73,
+  "dark": #26b38c
+);
+
  @import "bootstrap";
- 
- // from css template
- body {
-  padding-top: 54px;
+
+
+// from css template
+body {
+	font-family: 'Montserrat Alternates', sans-serif;
+	padding-top: 54px;
+	background-color: #f5edd7;
 }
 
 @media (min-width: 992px) {
@@ -40,3 +48,4 @@
 	margin-bottom: 30px;
 }
 // end
+
