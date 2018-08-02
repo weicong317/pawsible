@@ -7,11 +7,11 @@ class UploadsController < ApplicationController
     if upload.save
       user = User.find(upload.user_id)
       user.update(total_points: user.total_points + upload.challenge.points)
-
       redirect_to upload_path(upload)
     else
-      flash.now[:error] = "Upload failed!"
-      render :new
+      # flash can use redirect_to, flash.now cannot, must use render
+      flash[:error] = "Upload failed. Please try again."
+      redirect_to challenges_path
     end
   end
 
@@ -51,8 +51,8 @@ class UploadsController < ApplicationController
   private
   def require_login
     unless signed_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to sign_in_path
+      flash.now[:error] = "You must be logged in to access this section."
+      render template: "sessions/session_new"
     end
   end
 

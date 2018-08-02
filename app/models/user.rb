@@ -5,6 +5,7 @@ class User < ApplicationRecord
   mount_uploader :profile_pic, AvatarUploader
 
   validates :email, format: { with: /\A\w+.?\w+@\w+.\w+\z/ }, uniqueness: true
+  validates :password, format: { with: /\A\w{6,15}\z/ }
 
   enum status: [:"underdog", :"gooddog", :"cleverdog", :"hotdog", :"topdog"]
 

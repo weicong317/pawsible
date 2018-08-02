@@ -4,7 +4,4 @@ class HomepageController < ApplicationController
     @uploads = Upload.all.order(:created_at).reverse_order.limit(8)
     @leaderboard = User.all.order(:total_points).reverse_order.limit(10)
   end
-
-  def session_new
-  end
 end

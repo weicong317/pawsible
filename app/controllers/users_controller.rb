@@ -9,8 +9,8 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to user_path(@user.id)
     else
-      flash.now[:error] = "Sign up failed!"
-      redirect_to sign_in_path
+      flash.now[:error] = "Sign up failed! Bad email or password (between 6 to 15 characters)"
+      render template: "sessions/session_new"
     end
   end
 
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
 
   def require_login
     unless signed_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to sign_in_path
+      flash.now[:error] = "You must be logged in to access this section."
+      render template: "sessions/session_new"
     end
   end
 end

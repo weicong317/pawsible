@@ -14,7 +14,7 @@
           <div style="position: relative;">
             <div style="position: absolute; top: -19px; left: -28px;">
               <i class="fas fa-star text-warning fa-5x"></i>
-              <span class="h1 text-white" style="position: absolute; top: 20px; left: 33px;"><%= index + 1 %></span>
+              <span class="h1 text-white" style="position: absolute; top: 20px; left: 36px;"><%= index + 1 %></span>
             </div>
             <% if !dog.profile_pic.file.nil? %>
               <%= image_tag dog.profile_pic.url.to_s, class: "rounded-circle img-fluid d-blockd" %>
@@ -30,10 +30,10 @@
 
         <%# detail %>
         <div class="col-md-4 mb-3">
-          <h3>Points: <strong><%= dog.total_points %></strong></h3>
+          <h3>Points: <span class="text-success"><strong><%= dog.total_points %></strong></span></h3>
           <p>Name: <%= dog.dog_name %></p>
           <p>About me: <%= dog.dog_name %></p>
-          <p>Owner: <%= dog.owner_name %></p>
+          <p>Parent: <%= dog.owner_name %></p>
           <%= button_to "View Profile", user_path(dog.id), method: :get, class:"btn btn-primary" %>
         </div>
         <%# end %>

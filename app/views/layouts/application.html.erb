@@ -25,10 +25,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <%= link_to "Feeds", uploads_path, class:"nav-link text-white" %>
+              <%= link_to "Feed", uploads_path, class:"nav-link text-white" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Challenges", challenges_path, class:"nav-link text-white" %>
+              <%= link_to "Challenge", challenges_path, class:"nav-link text-white" %>
             </li>
             <li class="nav-item">
               <%= link_to "Leaderboard", leaderboard_path, class:"nav-link text-white" %>
@@ -51,11 +51,19 @@
     </nav>
     <%# end %>
 
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
+    <%# flash will trigger when upload failed, signup failed, require login and sign in failed from clearance %>
+    <% if flash %>
+      <div class="container">
+        <div class="row">
+          <% flash.each do |key, value| %>
+            <div id="flash" class="col-4 mx-auto text-center my-3 alert alert-danger" role="alert">
+              <div><%= value %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%# end %>
 
     <%= yield %>
 
