@@ -51,11 +51,19 @@
     </nav>
     <%# end %>
 
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
+    <%# flash will trigger when upload failed, signup failed, require login and sign in failed from clearance %>
+    <% if flash %>
+      <div class="container">
+        <div class="row">
+          <% flash.each do |key, value| %>
+            <div id="flash" class="col-4 mx-auto text-center my-3 alert alert-info" role="alert">
+              <div><%= value %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%# end %>
 
     <%= yield %>
 

@@ -10,8 +10,8 @@ class UploadsController < ApplicationController
 
       redirect_to upload_path(upload)
     else
-      flash.now[:error] = "Upload failed!"
-      render :new
+      flash.now[:error] = "Upload failed. Please try again."
+      redirect_to challenges_path
     end
   end
 
@@ -51,7 +51,7 @@ class UploadsController < ApplicationController
   private
   def require_login
     unless signed_in?
-      flash[:error] = "You must be logged in to access this section"
+      flash.now[:error] = "You must be logged in to access this section."
       redirect_to sign_in_path
     end
   end

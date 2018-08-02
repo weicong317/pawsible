@@ -16,10 +16,21 @@
               <%= image_tag(@user.badge, style: "width: 60px; height: 60px; position: absolute; top: 165px; right: 0") %>
 						</div>
 					</div>
-					<h1>Hi, I am <%= @user.dog_name %>!</h1>
-					<p>Hello everybody. I'm currently a <strong><%= @user.status %></strong>. My breed is <%= @user.breed %> and I have a good parent who named as <%= @user.owner_name %>.</p>
-					<h3><u>My biography</u></h3>
-					<p><%= @user.bio %></p>
+					<% if !@user.dog_name.nil? %>
+						<h1>Hi, I am <%= @user.dog_name %>!</h1>
+					<% end %>
+					<p>Hello everybody. I'm currently a <strong><%= @user.status %></strong>. 
+						<% if !@user.breed.nil? %>
+							My breed is <%= @user.breed %>.
+						<% end %>
+						<% if !@user.owner_name.nil? %>
+					 		I have a good parent who named as <%= @user.owner_name %>.
+						<% end %>	 
+					</p>
+					<% if !@user.bio.nil? %>
+						<h3><u>My biography</u></h3>
+						<p><%= @user.bio %></p>
+					<% end %>
 					<p>Total points I have the challenges is <strong><%= @user.total_points %></strong></p>
 
 					<%# button to edit profile %>
@@ -98,9 +109,9 @@
     	<h2 class="my-2 text-center">Challenged by ME</h2>
 			<div class="row text-center" id="mt">
 				<% if @user.uploads.size < 1 %>
-					<div class="col-md-4 bg-white mx-auto">
+					<div class="col-md-4 bg-white mx-auto px-0">
         		<div class="card">
-          		<div class="card-body text-center pb-0">
+          		<div class="card-body text-center pb-0 px-0">
             		<h4 class="card-title">You have not done any challenge yet</h4>
             		<hr>
             		<p class="card-text">
