@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get "/sign_in" => "homepage#session_new", as: "sign_in"
+  get "/sign_up" => "homepage#session_new", as: "sign_up"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   # end
   
