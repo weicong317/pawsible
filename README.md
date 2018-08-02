@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pawsible - group project at NEXT Academy
 
-Things you may want to cover:
+Pushed to Heroku!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Visit our apps at https://pawsible.herokuapp.com/ and comments are welcome! ^^
