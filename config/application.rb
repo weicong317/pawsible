@@ -10,6 +10,7 @@ module Pawsible
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.assets.initialize_on_precompile = false
 
     # To set up sidekiq to do background job
     config.active_job.queue_adapter = :sidekiq
